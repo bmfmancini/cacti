@@ -18,7 +18,7 @@ if (!function_exists('cacti_log')) {
 	}
 }
 
-require_once __DIR__ . '/../../lib/csp_report_endpoint.php';
+require_once dirname(__DIR__, 2) . '/lib/csp_report_endpoint.php';
 
 function _csp_headers($ct) {
 	return array('CONTENT_TYPE' => $ct);
