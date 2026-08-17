@@ -12,7 +12,6 @@
  +-------------------------------------------------------------------------+
 */
 
-require_once dirname(__DIR__) . '/Helpers/UnitStubs.php';
 require_once dirname(__DIR__, 2) . '/include/vendor/autoload.php';
 require_once dirname(__DIR__, 2) . '/lib/database.php';
 

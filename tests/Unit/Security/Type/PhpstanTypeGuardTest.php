@@ -37,7 +37,6 @@
  *   guard_foreach_iterable()    - array|false before foreach
  */
 
-require_once dirname(__DIR__, 3) . '/Helpers/CactiStubs.php';
 require_once dirname(__DIR__, 4) . '/include/global.php';
 
 // --- Stub: guard_db_result_access (pattern from multiple graph/data files) ---

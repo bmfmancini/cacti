@@ -12,11 +12,8 @@
  +-------------------------------------------------------------------------+
 */
 
-// UnitStubs MUST be loaded before lib/time.php so srv() and other helpers are
-// resolvable when shift_time() is exercised.
-require_once dirname(__DIR__, 3) . '/Helpers/UnitStubs.php';
-require_once dirname(__DIR__, 3) . '/include/global_constants.php';
-require_once dirname(__DIR__, 3) . '/lib/time.php';
+// NOTE: UnitStubs, global_constants.php, and lib/time.php are all loaded
+// by tests/bootstrap-unit.php, so no need to manually load them here.
 
 it('calculates the last hour correctly', function () {
 	$now = strtotime('2023-01-01 12:00:00');

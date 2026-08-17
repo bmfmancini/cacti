@@ -19,7 +19,6 @@
  * these tests pin the escaping the helper produces.
  */
 
-require_once dirname(__DIR__) . '/Helpers/UnitStubs.php';
 require_once dirname(__DIR__, 2) . '/lib/database.php';
 
 test('escapes percent, underscore and backslash for LIKE', function () {

@@ -12,7 +12,6 @@
  +-------------------------------------------------------------------------+
 */
 
-require_once dirname(__DIR__, 3) . '/Helpers/UnitStubs.php';
 require_once dirname(__DIR__, 4) . '/lib/rrd.php';
 
 it('escapes rrdtool strings correctly', function () {
