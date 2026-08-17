@@ -38,3 +38,24 @@ if (!function_exists(__NAMESPACE__ . '\\__') && !function_exists('\\__')) {
 		return vsprintf($text, $args);
 	}
 }
+
+// PEAR Net_Ping class - needed by tests but typically installed separately
+// Define a minimal stub so tests can extend or use it
+if (!class_exists('Net_Ping', false)) {
+	class Net_Ping {
+		public string $ping_status = 'ok';
+		public string $ping_response = 'ok';
+
+		public function ping(string $address = '', int $timeout = 5000) : bool {
+			return true;
+		}
+
+		public function ping_icmp(string $address = '', int $timeout = 5000) : bool {
+			return true;
+		}
+
+		public function ping_snmp(string $address = '', string $community = 'public') : bool {
+			return true;
+		}
+	}
+}
