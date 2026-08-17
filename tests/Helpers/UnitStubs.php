@@ -45,16 +45,19 @@ if (!class_exists('Net_Ping', false)) {
 	class Net_Ping {
 		public string $ping_status = 'ok';
 		public string $ping_response = 'ok';
+		public string $snmp_status = 'ok';
+		public string $snmp_response = 'ok';
+		public array $host = [];
 
-		public function ping(string $address = '', int $timeout = 5000) : bool {
+		public function ping() : bool {
 			return true;
 		}
 
-		public function ping_icmp(string $address = '', int $timeout = 5000) : bool {
+		public function ping_icmp() : bool {
 			return true;
 		}
 
-		public function ping_snmp(string $address = '', string $community = 'public') : bool {
+		public function ping_snmp() : bool {
 			return true;
 		}
 	}
