@@ -31,6 +31,11 @@ require_once __DIR__ . '/Helpers/CactiStubs.php';
 // without redeclaration errors.
 require_once __DIR__ . '/Helpers/UnitStubs.php';
 
+// Load test utility/helper classes that may be needed by tests
+// These are not auto-loaded and must be explicitly loaded
+require_once __DIR__ . '/Helpers/FakeMySQLPDO.php';
+require_once __DIR__ . '/Helpers/IsolatedProbe.php';
+
 // Load global configuration and settings
 // This includes:
 // - include/global_path.php - path constants
