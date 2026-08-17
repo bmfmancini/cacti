@@ -28,8 +28,6 @@
  * check, using the command name under /proc where that exists.
  */
 
-require_once dirname(__DIR__, 2) . '/include/global_constants.php';
-require_once dirname(__DIR__, 2) . '/lib/poller.php';
 
 /**
  * Starts a process running a different program and returns its pid.

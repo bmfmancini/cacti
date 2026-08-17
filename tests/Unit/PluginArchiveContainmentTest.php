@@ -23,7 +23,6 @@ declare(strict_types = 1);
  +-------------------------------------------------------------------------+
 */
 
-require_once dirname(__DIR__, 2) . '/lib/plugins.php';
 
 /**
  * Regression test for GHSA-pjmv-fxjm-29cx.

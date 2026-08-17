@@ -12,7 +12,6 @@
  +-------------------------------------------------------------------------+
 */
 
-require_once dirname(__DIR__, 3) . '/lib/renderer.php';
 
 function cacti_renderer_fixture_dir() : string {
 	static $dir = null;

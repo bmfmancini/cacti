@@ -12,7 +12,6 @@
  +-------------------------------------------------------------------------+
 */
 
-require_once dirname(__DIR__, 3) . '/include/global.php';
 
 /**
  * Test for PR #6702: Verify CACTI_PATH_MIBS constant is defined

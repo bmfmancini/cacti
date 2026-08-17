@@ -19,7 +19,6 @@
  * command; these cases mirror the reported pipe/newline injection vectors.
  */
 
-require_once dirname(__DIR__, 2) . '/lib/rrd.php';
 
 test('CRLF in a data source path cannot inject a second rrdtool command', function () {
 	// data_source_path carrying a CRLF + a second command over the pipe

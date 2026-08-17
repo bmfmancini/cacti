@@ -22,13 +22,10 @@
  +-------------------------------------------------------------------------+
 */
 
-require_once dirname(__DIR__, 4) . '/include/global.php';
-require_once dirname(__DIR__, 4) . '/lib/utility.php';
 
 // support.php returns early under the test-bootstrap gate, so only its function
 // declarations load here. That skips the auth + dispatch path a unit test cannot
 // satisfy while leaving the diagnostics helpers callable.
-require_once dirname(__DIR__, 4) . '/support.php';
 
 test('show_tech_environment renders the environment sections without a database', function () {
 	global $config;

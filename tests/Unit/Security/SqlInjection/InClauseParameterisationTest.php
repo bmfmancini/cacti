@@ -30,8 +30,6 @@
  *      the file source rather than executed.
  */
 
-require_once dirname(__DIR__, 4) . '/include/vendor/autoload.php';
-require_once dirname(__DIR__, 4) . '/lib/database.php';
 
 $libDir = dirname(__DIR__, 4) . '/lib';
 

@@ -12,8 +12,6 @@
  +-------------------------------------------------------------------------+
 */
 
-require_once dirname(__DIR__, 2) . '/include/vendor/autoload.php';
-require_once dirname(__DIR__, 2) . '/lib/database.php';
 
 // api_clone_device_template() remaps each cloned Data Template's RRD items
 // onto the cloned Graph Template's task_item_id. If the cloned Data Template

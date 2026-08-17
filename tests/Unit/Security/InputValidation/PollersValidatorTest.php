@@ -1,7 +1,5 @@
 <?php
 
-require_once dirname(__DIR__, 4) . '/include/vendor/autoload.php';
-require_once dirname(__DIR__, 4) . '/lib/CactiValidator.php';
 
 use Symfony\Component\Validator\Constraints as Assert;
 

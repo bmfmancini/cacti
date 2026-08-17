@@ -12,8 +12,6 @@
  +-------------------------------------------------------------------------+
 */
 
-require_once dirname(__DIR__, 3) . '/include/global.php';
-require_once dirname(__DIR__, 3) . '/lib/installer.php';
 
 test('a microtime value without a fractional part is not parseable as U.u', function () {
 	/*

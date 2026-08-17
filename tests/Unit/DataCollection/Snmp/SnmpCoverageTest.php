@@ -119,7 +119,6 @@ function cacti_strtolower(string $value) : string {
 	return strtolower($value);
 }
 
-require_once dirname(__DIR__, 4) . '/lib/snmp.php';
 
 final class CoverageSnmpSession {
 	public array $info              = ['timeout' => 1500, 'hostname' => 'coverage-host'];

@@ -12,7 +12,6 @@ declare(strict_types = 1);
  +-------------------------------------------------------------------------+
  */
 
-require_once dirname(__DIR__, 4) . '/lib/remote_agent_transport.php';
 
 test('remote-agent HTTP status parser returns the final valid status', function () {
 	expect(remote_agent_http_status([

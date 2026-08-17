@@ -12,8 +12,6 @@
  +-------------------------------------------------------------------------+
 */
 
-require_once dirname(__DIR__, 3) . '/include/vendor/autoload.php';
-require_once dirname(__DIR__, 3) . '/lib/database.php';
 
 /*
  * Runtime coverage for sql_save() empty-value handling on nullable numeric

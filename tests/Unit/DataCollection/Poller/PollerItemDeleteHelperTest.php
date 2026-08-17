@@ -12,9 +12,6 @@
  +-------------------------------------------------------------------------+
 */
 
-require_once dirname(__DIR__, 4) . '/include/vendor/autoload.php';
-require_once dirname(__DIR__, 4) . '/lib/database.php';
-require_once dirname(__DIR__, 4) . '/lib/poller.php';
 
 // poller_item_delete_for_data_source() / poller_item_delete_for_host() are the
 // single chokepoint every "DELETE FROM poller_item" call site now goes

@@ -22,7 +22,6 @@
  +-------------------------------------------------------------------------+
 */
 
-require_once dirname(__DIR__, 4) . '/include/global.php';
 
 /*
  * support_lockout() (support.php, #7352) cannot be called directly: it ends in

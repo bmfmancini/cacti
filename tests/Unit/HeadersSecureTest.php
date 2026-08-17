@@ -14,7 +14,6 @@
  * directly without a config or request context.
  */
 
-require_once dirname(__DIR__, 2) . '/lib/headers_secure.php';
 
 // --- default (HTMX) mode: byte-identical to prior releases ---
 

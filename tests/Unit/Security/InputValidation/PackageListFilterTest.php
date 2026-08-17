@@ -12,8 +12,6 @@
  +-------------------------------------------------------------------------+
 */
 
-require_once dirname(__DIR__, 4) . '/include/global.php';
-require_once dirname(__DIR__, 4) . '/lib/PackageListFilter.php';
 
 beforeEach(function () {
 	global $_CACTI_REQUEST;

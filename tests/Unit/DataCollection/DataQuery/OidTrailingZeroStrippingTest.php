@@ -17,8 +17,6 @@
  */
 
 beforeAll(function () {
-	require_once dirname(__DIR__, 4) . '/lib/functions.php';
-	require_once dirname(__DIR__, 4) . '/lib/data_query.php';
 });
 
 describe('OID trailing zero stripping', function () {

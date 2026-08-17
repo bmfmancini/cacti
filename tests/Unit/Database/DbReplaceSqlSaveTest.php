@@ -12,8 +12,6 @@
  +-------------------------------------------------------------------------+
 */
 
-require_once dirname(__DIR__, 3) . '/include/vendor/autoload.php';
-require_once dirname(__DIR__, 3) . '/lib/database.php';
 
 // FakeMySQLPDO rewrites SHOW TABLES / SHOW COLUMNS and
 // INSERT ... ON DUPLICATE KEY UPDATE into the sqlite_master /

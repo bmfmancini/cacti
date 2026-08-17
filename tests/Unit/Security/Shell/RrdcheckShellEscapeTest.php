@@ -27,8 +27,6 @@
  * argument at a time.
  */
 
-require_once dirname(__DIR__, 4) . '/include/global.php';
-require_once dirname(__DIR__, 4) . '/lib/rrdcheck.php';
 
 $rrdcheckSource = file_get_contents(__DIR__ . '/../../../../lib/rrdcheck.php');
 

@@ -12,8 +12,6 @@
  +-------------------------------------------------------------------------+
 */
 
-require_once dirname(__DIR__, 3) . '/include/vendor/autoload.php';
-require_once dirname(__DIR__, 3) . '/lib/database.php';
 
 // db_table_exists / db_column_exists rely on MySQL's SHOW TABLES /
 // SHOW COLUMNS syntax. FakeMySQLPDO rewrites those statements at

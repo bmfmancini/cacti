@@ -17,7 +17,6 @@
 // The per-item type/id guard the bulk-action loop applies before dispatch is
 // reproduced here as a pure predicate matching reports_form_actions().
 
-require_once dirname(__DIR__, 4) . '/lib/reports.php';
 
 /**
  * Mirror of the bulk-action loop guard in reports_form_actions(): an item is

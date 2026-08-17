@@ -46,7 +46,6 @@ test('the package export form escapes the object name', function () use ($packag
 });
 
 test('the escaping helper neutralises both quote styles and script tags', function () {
-	require_once dirname(__DIR__, 4) . '/lib/html.php';
 
 	$payload = '\'"><script>alert(1)</script>';
 	$escaped = htmle($payload);

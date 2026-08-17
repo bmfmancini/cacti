@@ -12,8 +12,6 @@
  +-------------------------------------------------------------------------+
 */
 
-require_once dirname(__DIR__, 4) . '/include/global.php';
-require_once dirname(__DIR__, 4) . '/lib/poller.php';
 
 // --- Bug 1: operator precedence in timeout microsecond conversion ---
 

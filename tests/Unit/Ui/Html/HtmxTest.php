@@ -22,8 +22,6 @@
  +-------------------------------------------------------------------------+
 */
 
-require_once dirname(__DIR__, 4) . '/include/global.php';
-require_once dirname(__DIR__, 4) . '/lib/htmx.php';
 
 /*
  * read_config_option() is already declared by include/global.php. In CLI mode

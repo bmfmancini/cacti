@@ -12,8 +12,6 @@
  +-------------------------------------------------------------------------+
 */
 
-require_once dirname(__DIR__, 3) . '/include/vendor/autoload.php';
-require_once dirname(__DIR__, 3) . '/lib/database.php';
 
 /*
  * #7379: db_get_table_column_types() memoizes its SHOW COLUMNS lookup so that

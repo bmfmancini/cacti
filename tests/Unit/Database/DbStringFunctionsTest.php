@@ -12,8 +12,6 @@
  +-------------------------------------------------------------------------+
 */
 
-require_once dirname(__DIR__, 3) . '/include/vendor/autoload.php';
-require_once dirname(__DIR__, 3) . '/lib/database.php';
 
 it('builds an IN clause from a list of values', function () {
 	expect(array_to_sql_or([1, 2, 3], 'col'))

@@ -12,8 +12,6 @@
  +-------------------------------------------------------------------------+
 */
 
-require_once dirname(__DIR__, 3) . '/include/vendor/autoload.php';
-require_once dirname(__DIR__, 3) . '/lib/database.php';
 
 it('returns false without throwing when MySQL is unreachable', function () {
 	// db_connect_real() short-circuits and returns false when the

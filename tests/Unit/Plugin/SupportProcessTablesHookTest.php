@@ -22,7 +22,6 @@
  +-------------------------------------------------------------------------+
 */
 
-require_once dirname(__DIR__, 3) . '/include/global.php';
 
 /*
  * support_process_tables() (support.php, #7353) publishes the built-in process

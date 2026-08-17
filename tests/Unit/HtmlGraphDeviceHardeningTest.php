@@ -25,7 +25,6 @@ function hardeningFunctionSource(string $source, string $function, string $nextF
 $htmlGraphSource = file_get_contents(dirname(__DIR__, 2) . '/lib/html_graph.php');
 $apiDeviceSource = file_get_contents(dirname(__DIR__, 2) . '/lib/api_device.php');
 
-require_once dirname(__DIR__, 2) . '/lib/html_graph.php';
 
 expect($htmlGraphSource)->not->toBeFalse();
 expect($apiDeviceSource)->not->toBeFalse();
