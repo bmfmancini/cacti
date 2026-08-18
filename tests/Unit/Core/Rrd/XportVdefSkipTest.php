@@ -12,7 +12,7 @@
  +-------------------------------------------------------------------------+
 */
 
-$rrdSource = file_get_contents(__DIR__ . '/../../../../lib/rrd.php');
+$rrdSource = file_get_contents(CACTI_PATH_LIBRARY . '/rrd.php');
 
 test('xport skips VDEF backed graph items', function () use ($rrdSource) {
 	expect($rrdSource)->not->toBeFalse();

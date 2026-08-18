@@ -12,10 +12,8 @@
  +-------------------------------------------------------------------------+
 */
 
-$root = dirname(__DIR__, 3);
-
-function installer_select_all_javascript(string $root) : string {
-	$javascript = file_get_contents($root . '/install/install.js');
+function installer_select_all_javascript() : string {
+	$javascript = file_get_contents(CACTI_PATH_BASE . '/install/install.js');
 
 	if ($javascript === false) {
 		throw new RuntimeException('Unable to read install/install.js');
@@ -24,8 +22,8 @@ function installer_select_all_javascript(string $root) : string {
 	return $javascript;
 }
 
-test('installer binds ajax table controls before restoring checkbox state', function () use ($root) {
-	$javascript    = installer_select_all_javascript($root);
+test('installer binds ajax table controls before restoring checkbox state', function () {
+	$javascript    = installer_select_all_javascript();
 	$contentMarker = "$('#installContent').html(data.Html);";
 	$content       = strpos($javascript, $contentMarker);
 
@@ -48,8 +46,8 @@ test('installer binds ajax table controls before restoring checkbox state', func
 		->and($bindControls < $restoreTables)->toBeTrue();
 });
 
-test('installer restores select all without relying on a synthetic click', function () use ($root) {
-	$javascript = installer_select_all_javascript($root);
+test('installer restores select all without relying on a synthetic click', function () {
+	$javascript = installer_select_all_javascript();
 
 	$start = strpos($javascript, 'function restoreInstallerSelection(');
 

@@ -15,7 +15,7 @@
  +-------------------------------------------------------------------------+
 */
 
-require_once dirname(__DIR__, 3) . '/lib/audit.php';
+require_once CACTI_PATH_LIBRARY . '/audit.php';
 
 test('legacy audit identifiers are safely quoted', function () {
 	expect(audit_quote_identifier('max-access'))->toBe('`max-access`')
@@ -50,7 +50,7 @@ test('legacy hyphenated columns are matched exactly', function () {
 });
 
 test('the canonical row cache create statement can be extracted', function () {
-	$schema = file_get_contents(dirname(__DIR__, 3) . '/cacti.sql');
+	$schema = file_get_contents(CACTI_PATH_BASE . '/cacti.sql');
 
 	expect($schema)->not->toBeFalse();
 
@@ -75,7 +75,7 @@ test('create statement extraction fails closed', function () {
 });
 
 test('database audit query failures fail closed', function () {
-	$source = file_get_contents(dirname(__DIR__, 3) . '/cli/audit_database.php');
+	$source = file_get_contents(CACTI_PATH_BASE . '/cli/audit_database.php');
 
 	expect($source)->not->toBeFalse()
 		->and($source)->toContain('if (!is_array($tables)) {')

@@ -7,7 +7,7 @@
  +-------------------------------------------------------------------------+
 */
 
-$pingSource = file_get_contents(__DIR__ . '/../../../../lib/ping.php');
+$pingSource = file_get_contents(CACTI_PATH_LIBRARY . '/ping.php');
 
 test('GHSA-43gj-mcpx-24m9: ICMP DNS failure ping_response wraps hostname in html_escape', function () use ($pingSource) {
 	// When cacti_gethostbyname returns a non-IP (DNS failure), the caller-

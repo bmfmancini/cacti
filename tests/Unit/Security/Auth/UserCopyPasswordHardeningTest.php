@@ -14,7 +14,7 @@
  * hashed value and sets must_change_password='on' for the copied user.
  */
 
-$src = file_get_contents(__DIR__ . '/../../../../lib/auth.php');
+$src = file_get_contents(CACTI_PATH_LIBRARY . '/auth.php');
 
 test('user_copy does not use mt_rand for password placeholder', function () use ($src) {
     $start = strpos($src, 'function user_copy(');

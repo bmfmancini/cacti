@@ -20,7 +20,7 @@ if (!function_exists('cacti_sizeof')) {
 	}
 }
 
-require_once dirname(__DIR__, 4) . '/lib/api_automation_tools.php';
+require_once CACTI_PATH_LIBRARY . '/api_automation_tools.php';
 
 /**
  * Runs the prepared-query probe in a clean PHP process.
@@ -28,7 +28,7 @@ require_once dirname(__DIR__, 4) . '/lib/api_automation_tools.php';
  * @return array Decoded probe verdict.
  */
 function automation_run_prepared_probe() {
-	$script  = dirname(__DIR__, 3) . '/fixtures/automation_prepared_in_clause_probe.php';
+	$script  = CACTI_PATH_BASE . '/fixtures/automation_prepared_in_clause_probe.php';
 	$process = proc_open(array(PHP_BINARY, $script), array(1 => array('pipe', 'w'), 2 => array('pipe', 'w')), $pipes);
 
 	if (!is_resource($process)) {

@@ -7,9 +7,9 @@
  +-------------------------------------------------------------------------+
 */
 
-$functionsSource = file_get_contents(__DIR__ . '/../../../../lib/functions.php');
-$helpSource      = file_get_contents(__DIR__ . '/../../../../help.php');
-$pluginsSource   = file_get_contents(__DIR__ . '/../../../../lib/plugins.php');
+$functionsSource = file_get_contents(CACTI_PATH_LIBRARY . '/functions.php');
+$helpSource      = file_get_contents(CACTI_PATH_BASE . '/help.php');
+$pluginsSource   = file_get_contents(CACTI_PATH_LIBRARY . '/plugins.php');
 
 test('cacti_exec is defined and rejects empty binary', function () use ($functionsSource) {
 	$start = strpos($functionsSource, 'function cacti_exec(');

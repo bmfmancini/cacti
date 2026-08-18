@@ -98,7 +98,7 @@ PHP;
 
 	$cmd = escapeshellarg(defined('PHP_BINARY') ? PHP_BINARY : 'php') . ' ' .
 		escapeshellarg($script) . ' ' .
-		escapeshellarg(dirname(__DIR__, 4) . '/lib/html_form.php') . ' ' .
+		escapeshellarg(CACTI_PATH_LIBRARY . '/html_form.php') . ' ' .
 		escapeshellarg(json_encode($form)) . ' 2>&1';
 
 	$output = array();

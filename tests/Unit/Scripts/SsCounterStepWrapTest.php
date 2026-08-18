@@ -24,7 +24,7 @@
 
 global $called_by_script_server;
 $called_by_script_server = true;
-require_once __DIR__ . '/../../../scripts/ss_net_snmp_disk_io.php';
+require_once CACTI_PATH_SCRIPTS . '/ss_net_snmp_disk_io.php';
 
 test('no wrap: delta is current minus previous', function () {
 	expect(ss_counter_step('U', '105', '100', '4294967296'))->toBe('5');

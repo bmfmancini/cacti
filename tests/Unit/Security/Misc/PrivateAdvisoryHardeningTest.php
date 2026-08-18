@@ -7,17 +7,17 @@
  +-------------------------------------------------------------------------+
 */
 
-$colorSource         = file_get_contents(__DIR__ . '/../../../../color.php');
-$dataSourcesSource   = file_get_contents(__DIR__ . '/../../../../data_sources.php');
-$dataTemplatesSource = file_get_contents(__DIR__ . '/../../../../data_templates.php');
-$databaseSource      = file_get_contents(__DIR__ . '/../../../../lib/database.php');
-$functionsSource     = file_get_contents(__DIR__ . '/../../../../lib/functions.php');
-$pluginsSource       = file_get_contents(__DIR__ . '/../../../../lib/plugins.php');
-$pollerLibSource     = file_get_contents(__DIR__ . '/../../../../lib/poller.php');
-$rrdSource           = file_get_contents(__DIR__ . '/../../../../lib/rrd.php');
-$boostSource         = file_get_contents(__DIR__ . '/../../../../lib/boost.php');
-$realtimeSource      = file_get_contents(__DIR__ . '/../../../../poller_realtime.php');
-$spikekillSource     = file_get_contents(__DIR__ . '/../../../../poller_spikekill.php');
+$colorSource         = file_get_contents(CACTI_PATH_BASE . '/color.php');
+$dataSourcesSource   = file_get_contents(CACTI_PATH_BASE . '/data_sources.php');
+$dataTemplatesSource = file_get_contents(CACTI_PATH_BASE . '/data_templates.php');
+$databaseSource      = file_get_contents(CACTI_PATH_LIBRARY . '/database.php');
+$functionsSource     = file_get_contents(CACTI_PATH_LIBRARY . '/functions.php');
+$pluginsSource       = file_get_contents(CACTI_PATH_LIBRARY . '/plugins.php');
+$pollerLibSource     = file_get_contents(CACTI_PATH_LIBRARY . '/poller.php');
+$rrdSource           = file_get_contents(CACTI_PATH_LIBRARY . '/rrd.php');
+$boostSource         = file_get_contents(CACTI_PATH_LIBRARY . '/boost.php');
+$realtimeSource      = file_get_contents(CACTI_PATH_BASE . '/poller_realtime.php');
+$spikekillSource     = file_get_contents(CACTI_PATH_BASE . '/poller_spikekill.php');
 
 test('rrd maximum and minimum validators are fully anchored', function () use ($dataSourcesSource, $dataTemplatesSource) {
 	expect($dataSourcesSource)->toContain('^((-?([0-9]+(\.[0-9]*)?|[0-9]*\.[0-9]+)([eE][+\-]?[0-9]+)?)|U|\|query_ifSpeed\||\|query_ifHighSpeed\|)$');

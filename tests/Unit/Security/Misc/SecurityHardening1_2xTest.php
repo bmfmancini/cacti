@@ -7,10 +7,10 @@
  +-------------------------------------------------------------------------+
 */
 
-$authProfileSource  = file_get_contents(__DIR__ . '/../../../../auth_profile.php');
-$functionsSource    = file_get_contents(__DIR__ . '/../../../../lib/functions.php');
-$htmlUtilitySource  = file_get_contents(__DIR__ . '/../../../../lib/html_utility.php');
-$databaseSource     = file_get_contents(__DIR__ . '/../../../../lib/database.php');
+$authProfileSource  = file_get_contents(CACTI_PATH_BASE . '/auth_profile.php');
+$functionsSource    = file_get_contents(CACTI_PATH_LIBRARY . '/functions.php');
+$htmlUtilitySource  = file_get_contents(CACTI_PATH_LIBRARY . '/html_utility.php');
+$databaseSource     = file_get_contents(CACTI_PATH_LIBRARY . '/database.php');
 
 // M-1: JS context injection in auth_profile.php
 
@@ -83,7 +83,7 @@ test('db_dump_data passes password via environment not command line', function (
 // auth_process_lockout_check() returns true when the account IS locked.
 // The condition must be truthy (deny when locked), not === false (deny when unlocked).
 
-$authSource = file_get_contents(__DIR__ . '/../../../../lib/auth.php');
+$authSource = file_get_contents(CACTI_PATH_LIBRARY . '/auth.php');
 
 test('check_auth_cookie uses truthy lockout check not inverted === false', function () use ($authSource) {
 	$start = strpos($authSource, 'function check_auth_cookie(');

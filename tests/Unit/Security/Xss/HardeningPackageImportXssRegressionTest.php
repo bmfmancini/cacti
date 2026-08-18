@@ -7,7 +7,7 @@
  +-------------------------------------------------------------------------+
 */
 
-$pkgSource = file_get_contents(__DIR__ . '/../../../../package_import.php');
+$pkgSource = file_get_contents(CACTI_PATH_BASE . '/package_import.php');
 
 test('GHSA-wqqv-4rrg-mrrc: template name column uses form_selectable_ecell', function () use ($pkgSource) {
 	// form_selectable_ecell HTML-encodes before output; the plain variant does not.

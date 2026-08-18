@@ -12,8 +12,8 @@
  +-------------------------------------------------------------------------+
 */
 
-$authSource = file_get_contents(dirname(__DIR__, 4) . '/lib/auth.php');
-$authLoginSource = file_get_contents(dirname(__DIR__, 4) . '/auth_login.php');
+$authSource = file_get_contents(CACTI_PATH_LIBRARY . '/auth.php');
+$authLoginSource = file_get_contents(CACTI_PATH_BASE . '/auth_login.php');
 
 test('auth_process_lockout uses atomic SQL increment for failed_attempts', function () use ($authSource) {
 	// The fix replaces SELECT-then-UPDATE with a single atomic UPDATE

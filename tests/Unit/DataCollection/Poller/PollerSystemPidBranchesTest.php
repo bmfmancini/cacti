@@ -63,7 +63,7 @@ if (!function_exists('db_fetch_assoc_prepared')) {
 	}
 }
 
-require_once __DIR__ . '/../../../../lib/poller.php';
+require_once CACTI_PATH_LIBRARY . '/poller.php';
 
 beforeEach(function () {
 	$GLOBALS['__poller_log']          = array();

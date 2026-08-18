@@ -15,9 +15,9 @@
  * so the advisory it guards against remains traceable.
  */
 
-$functionsSource  = file_get_contents(__DIR__ . '/../../../../lib/functions.php');
-$graphImageSource = file_get_contents(__DIR__ . '/../../../../graph_image.php');
-$graphJsonSource  = file_get_contents(__DIR__ . '/../../../../graph_json.php');
+$functionsSource  = file_get_contents(CACTI_PATH_LIBRARY . '/functions.php');
+$graphImageSource = file_get_contents(CACTI_PATH_BASE . '/graph_image.php');
+$graphJsonSource  = file_get_contents(CACTI_PATH_BASE . '/graph_json.php');
 
 // GHSA-23p9: outbound HTTP context must verify_peer, reject self-signed certs, and
 // not auto-follow redirects.

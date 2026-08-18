@@ -7,7 +7,7 @@
  +-------------------------------------------------------------------------+
 */
 
-$htmlUtilitySource = file_get_contents(__DIR__ . '/../../../../lib/html_utility.php');
+$htmlUtilitySource = file_get_contents(CACTI_PATH_LIBRARY . '/html_utility.php');
 
 test('sort order uses normalized column helper before session sql generation', function () use ($htmlUtilitySource) {
 	expect($htmlUtilitySource)->toContain('function cacti_normalize_sort_column($column)');

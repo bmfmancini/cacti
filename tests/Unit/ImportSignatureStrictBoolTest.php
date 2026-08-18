@@ -14,7 +14,7 @@
  * `if (!import_validate_signature(...))` read a failed check as a pass.
  */
 
-$src = file_get_contents(dirname(__DIR__, 2) . '/lib/import.php');
+$src = file_get_contents(CACTI_PATH_LIBRARY . '/import.php');
 
 test('import_validate_signature is declared to return bool', function () use ($src) {
 	expect($src)->toContain('function import_validate_signature($xmlfile) : bool {');

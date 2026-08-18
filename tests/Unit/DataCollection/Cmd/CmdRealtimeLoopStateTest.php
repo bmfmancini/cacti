@@ -22,7 +22,7 @@
  * from a clean local.
  */
 
-$source = file_get_contents(__DIR__ . '/../../../../cmd_realtime.php');
+$source = file_get_contents(CACTI_PATH_BASE . '/cmd_realtime.php');
 
 test('cmd_realtime.php parses and still contains the realtime foreach', function () use ($source) {
 	expect($source)->toContain('foreach($poller_items as $item)');

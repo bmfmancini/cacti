@@ -15,7 +15,7 @@
  * rest of the shell invocations in this file.
  */
 
-$src = file_get_contents(__DIR__ . '/../../../../host.php');
+$src = file_get_contents(CACTI_PATH_BASE . '/host.php');
 
 test('host.php uses cacti_escapeshellarg on host_id in shell_exec call', function () use ($src) {
     expect($src)->toContain('cacti_escapeshellarg((string) $host_id)');

@@ -17,7 +17,7 @@
  * bound value must both key off id, not hostname.
  */
 
-$source = file_get_contents(__DIR__ . '/../../../lib/functions.php');
+$source = file_get_contents(CACTI_PATH_LIBRARY . '/functions.php');
 
 test('update_host_status() UPDATE is scoped by WHERE id = ?', function () use ($source) {
 	$pos = strpos($source, "db_execute_prepared('UPDATE host SET");

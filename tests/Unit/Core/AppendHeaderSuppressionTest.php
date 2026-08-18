@@ -22,7 +22,7 @@
  * The fix is the canonical `=== false` strpos idiom.
  */
 
-$source = file_get_contents(__DIR__ . '/../../../lib/functions.php');
+$source = file_get_contents(CACTI_PATH_LIBRARY . '/functions.php');
 
 test('lib/functions.php uses === false in appendHeaderSuppression', function () use ($source) {
 	$start = strpos($source, 'function appendHeaderSuppression(');

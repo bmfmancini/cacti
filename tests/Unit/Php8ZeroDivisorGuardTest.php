@@ -19,11 +19,9 @@
  * DivisionByZeroError, which ends the request instead.
  */
 
-$base = dirname(__DIR__, 2);
-
-test('the sources under test are readable', function () use ($base) {
+test('the sources under test are readable', function () {
 	foreach (array('/lib/api_aggregate.php', '/lib/utility.php', '/lib/html_reports.php') as $rel) {
-		expect(file_get_contents($base . $rel))->toBeString()->not->toBeEmpty();
+		expect(file_get_contents(CACTI_PATH_BASE . $rel))->toBeString()->not->toBeEmpty();
 	}
 });
 
@@ -33,8 +31,8 @@ test('PHP 8 makes both division and modulo by zero fatal', function () {
 		->and(function () { return 5 / 0; })->toThrow(DivisionByZeroError::class);
 });
 
-test('the aggregate colour round robin checks the template has colours', function () use ($base) {
-	$src = file_get_contents($base . '/lib/api_aggregate.php');
+test('the aggregate colour round robin checks the template has colours', function () {
+	$src = file_get_contents(CACTI_PATH_LIBRARY . '/api_aggregate.php');
 
 	expect($src)->not->toContain("WHERE color_template_id=' . \$_color_templates[\$i] . '")
 		->and($src)->toContain('WHERE color_template_id = ?');
@@ -47,25 +45,25 @@ test('the aggregate colour round robin checks the template has colours', functio
 		->and($guard)->toBeLessThan($use);
 });
 
-test('the connection recommendation checks max_connections came back', function () use ($base) {
-	$src = file_get_contents($base . '/lib/utility.php');
+test('the connection recommendation checks max_connections came back', function () {
+	$src = file_get_contents(CACTI_PATH_LIBRARY . '/utility.php');
 
 	expect($src)->not->toContain('$recommendation = $remainingMem / $maxConnections;')
 		->and($src)->toContain('$maxConnections > 0 ? $remainingMem / $maxConnections : 0');
 });
 
-test('the report mail time falls back to the declared poller interval', function () use ($base) {
-	$src = file_get_contents($base . '/lib/html_reports.php');
+test('the report mail time falls back to the declared poller interval', function () {
+	$src = file_get_contents(CACTI_PATH_LIBRARY . '/html_reports.php');
 
 	expect($src)->not->toContain("floor(time() / read_config_option('poller_interval'))")
 		->and($src)->toContain('$interval = (int) read_config_option(\'poller_interval\');')
 		->and($src)->toContain('$interval = 300;');
 });
 
-test('the fallback matches the default the setting itself declares', function () use ($base) {
+test('the fallback matches the default the setting itself declares', function () {
 	/* a fallback that disagreed with global_settings would round report times
 	   to a different grid than the poller actually runs on */
-	$settings = file_get_contents($base . '/include/global_settings.php');
+	$settings = file_get_contents(CACTI_PATH_INCLUDE . '/global_settings.php');
 
 	expect(preg_match("/'poller_interval' => array\(.*?'default' => (\d+)/s", $settings, $m))->toBe(1)
 		->and($m[1])->toBe('300');

@@ -7,7 +7,7 @@
  +-------------------------------------------------------------------------+
 */
 
-require_once __DIR__ . '/../../../../lib/headers_secure.php';
+require_once CACTI_PATH_LIBRARY . '/headers_secure.php';
 
 /* Stub read_config_option() so tests can control flag values via
  * $GLOBALS['__test_config_options'] without a database connection. */

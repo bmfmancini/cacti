@@ -5,7 +5,7 @@
  +-------------------------------------------------------------------------+
 */
 
-require_once dirname(__DIR__, 4) . '/lib/html_utility.php';
+require_once CACTI_PATH_LIBRARY . '/html_utility.php';
 
 test('validate_redirect_url allows safe local URLs', function () {
 	expect(validate_redirect_url('index.php'))->toBe('index.php');

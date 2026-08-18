@@ -64,7 +64,7 @@ PHP;
 
 	$cmd = escapeshellarg(defined('PHP_BINARY') ? PHP_BINARY : 'php') . ' ' .
 		escapeshellarg($script) . ' ' .
-		escapeshellarg(dirname(__DIR__, 4)) . ' ' .
+		escapeshellarg(CACTI_PATH_BASE) . ' ' .
 		escapeshellarg($cache_path) . ' 2>&1';
 
 	$output = array();
@@ -108,7 +108,7 @@ function _html_purify_rmdir($dir) {
 }
 
 function _html_purify_library_cache() {
-	return dirname(__DIR__, 4) .
+	return CACTI_PATH_BASE .
 		'/include/vendor/ezyang/htmlpurifier/library/HTMLPurifier/DefinitionCache/Serializer';
 }
 
@@ -123,7 +123,7 @@ function _html_purify_count($dir) {
 }
 
 test('the alternate cache path is documented in the distributed config', function () {
-	$config = file_get_contents(dirname(__DIR__, 4) . '/include/config.php.dist');
+	$config = file_get_contents(CACTI_PATH_INCLUDE . '/config.php.dist');
 
 	expect($config)->not->toBeFalse()
 		->and($config)->toContain("\$config['purifier_cache_path'] = '/var/cache/cacti/purifier';")

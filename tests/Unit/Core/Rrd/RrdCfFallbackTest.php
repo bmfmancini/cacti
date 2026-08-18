@@ -33,7 +33,7 @@
 // --- source scanning helper ---
 
 function getRrdCfFallbackSource(): string {
-	$rrdPhp = file_get_contents(__DIR__ . '/../../../../lib/rrd.php');
+	$rrdPhp = file_get_contents(CACTI_PATH_LIBRARY . '/rrd.php');
 	expect($rrdPhp)->not->toBeFalse('Failed to read lib/rrd.php');
 
 	return $rrdPhp;

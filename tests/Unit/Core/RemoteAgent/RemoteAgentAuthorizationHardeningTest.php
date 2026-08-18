@@ -7,7 +7,7 @@
  +-------------------------------------------------------------------------+
 */
 
-$remoteAgentSource = file_get_contents(__DIR__ . '/../../../../remote_agent.php');
+$remoteAgentSource = file_get_contents(CACTI_PATH_BASE . '/remote_agent.php');
 
 test('remote agent authorization checks direct poller IP before DNS', function () use ($remoteAgentSource) {
 	expect($remoteAgentSource)->toContain('if ($poller_host === $client_addr)');

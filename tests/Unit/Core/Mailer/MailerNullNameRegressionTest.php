@@ -7,7 +7,7 @@
  +-------------------------------------------------------------------------+
 */
 
-$functionsSource = file_get_contents(__DIR__ . '/../../../../lib/functions.php');
+$functionsSource = file_get_contents(CACTI_PATH_LIBRARY . '/functions.php');
 
 // Locate the mailer() body once; all tests below slice from it.
 $mailerStart = strpos($functionsSource, 'function mailer(');

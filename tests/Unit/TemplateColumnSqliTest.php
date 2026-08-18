@@ -7,7 +7,7 @@
  +-------------------------------------------------------------------------+
 */
 
-require_once dirname(__DIR__, 2) . '/lib/graph_template_input.php';
+require_once CACTI_PATH_LIBRARY . '/graph_template_input.php';
 
 test('graph template inputs allow only editable 1.2.x graph item fields', function () {
 	$allowed = array(
@@ -55,18 +55,17 @@ test('graph template inputs reject structural columns and SQL syntax', function 
 });
 
 test('every 1.2.x graph template input handoff uses the application allowlist', function () {
-	$root = dirname(__DIR__, 2);
 	$files = array(
-		'graph_templates_inputs.php',
-		'graphs.php',
-		'lib/api_graph.php',
-		'lib/html_form_template.php',
-		'lib/import.php',
-		'lib/template.php',
+		CACTI_PATH_BASE . '/graph_templates_inputs.php',
+		CACTI_PATH_BASE . '/graphs.php',
+		CACTI_PATH_LIBRARY . '/api_graph.php',
+		CACTI_PATH_LIBRARY . '/html_form_template.php',
+		CACTI_PATH_LIBRARY . '/import.php',
+		CACTI_PATH_LIBRARY . '/template.php',
 	);
 
 	foreach ($files as $file) {
-		$source = file_get_contents($root . '/' . $file);
+		$source = file_get_contents($file);
 
 		expect($source)
 			->toBeString()
@@ -75,7 +74,7 @@ test('every 1.2.x graph template input handoff uses the application allowlist', 
 });
 
 test('the 1.2.x push out sinks use only the validated local identifier', function () {
-	$source = file_get_contents(dirname(__DIR__, 2) . '/lib/template.php');
+	$source = file_get_contents(CACTI_PATH_LIBRARY . '/template.php');
 
 	expect(preg_match('/function push_out_graph_input\(.*?\n}\n/s', $source, $matches))->toBe(1);
 	$body = $matches[0];
@@ -95,7 +94,7 @@ test('the 1.2.x push out sinks use only the validated local identifier', functio
 });
 
 test('1.2.x XML import validates graph input fields before its first template write', function () {
-	$source = file_get_contents(dirname(__DIR__, 2) . '/lib/import.php');
+	$source = file_get_contents(CACTI_PATH_LIBRARY . '/import.php');
 
 	expect(preg_match('/function xml_to_graph_template\(.*?\n}\n/s', $source, $matches))->toBe(1);
 	$body = $matches[0];
@@ -108,7 +107,7 @@ test('1.2.x XML import validates graph input fields before its first template wr
 });
 
 test('1.2.x graph saves preflight every input before updating graph items', function () {
-	$source = file_get_contents(dirname(__DIR__, 2) . '/graphs.php');
+	$source = file_get_contents(CACTI_PATH_BASE . '/graphs.php');
 
 	$guard = strpos($source, 'graph_template_input_column_is_allowed(');
 	$abort = strpos($source, '$input_list = array();', $guard);
@@ -141,7 +140,7 @@ test('1.2.x graph input values are validated by field shape', function () {
 });
 
 test('1.2.x graph input propagation preflights every value before updating', function () {
-	$source = file_get_contents(dirname(__DIR__, 2) . '/lib/template.php');
+	$source = file_get_contents(CACTI_PATH_LIBRARY . '/template.php');
 
 	expect(preg_match('/function push_out_graph_input\(.*?\n}\n/s', $source, $matches))->toBe(1);
 	$body = $matches[0];
@@ -157,8 +156,8 @@ test('1.2.x graph input propagation preflights every value before updating', fun
 });
 
 test('1.2.x graph input deletion requires a CSRF protected POST', function () {
-	$handler = file_get_contents(dirname(__DIR__, 2) . '/graph_templates_inputs.php');
-	$ui      = file_get_contents(dirname(__DIR__, 2) . '/graph_templates.php');
+	$handler = file_get_contents(CACTI_PATH_BASE . '/graph_templates_inputs.php');
+	$ui      = file_get_contents(CACTI_PATH_BASE . '/graph_templates.php');
 
 	expect($handler)->toContain("\$_SERVER['REQUEST_METHOD'] !== 'POST'");
 	expect($ui)
@@ -168,7 +167,7 @@ test('1.2.x graph input deletion requires a CSRF protected POST', function () {
 });
 
 test('1.2.x input mutations validate ownership and use transactions', function () {
-	$source = file_get_contents(dirname(__DIR__, 2) . '/graph_templates_inputs.php');
+	$source = file_get_contents(CACTI_PATH_BASE . '/graph_templates_inputs.php');
 
 	expect($source)
 		->toContain('graph_template_input_relationships_are_valid(')
@@ -179,7 +178,7 @@ test('1.2.x input mutations validate ownership and use transactions', function (
 });
 
 test('1.2.x integrity audit is read only', function () {
-	$source = file_get_contents(dirname(__DIR__, 2) . '/cli/audit_graph_template_inputs.php');
+	$source = file_get_contents(CACTI_PATH_BASE . '/cli/audit_graph_template_inputs.php');
 
 	expect($source)
 		->toContain('cross-template definitions')

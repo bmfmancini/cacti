@@ -21,7 +21,7 @@
  * time, so it can be included without a database or full Cacti bootstrap.
  */
 
-require_once dirname(__DIR__, 4) . '/lib/api_automation.php';
+require_once CACTI_PATH_LIBRARY . '/api_automation.php';
 
 /* $total is only used to gate the early return; any value above $count works. */
 function next_host($start, $count) {

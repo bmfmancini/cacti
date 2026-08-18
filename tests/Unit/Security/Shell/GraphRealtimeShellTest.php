@@ -20,7 +20,7 @@
  * binary, and cacti_escapeshellarg for the script path.
  */
 
-$graphRealtimePath = __DIR__ . '/../../../../graph_realtime.php';
+$graphRealtimePath = CACTI_PATH_BASE . '/graph_realtime.php';
 
 // --- graph_realtime.php: shell escaping for poller invocation ---
 

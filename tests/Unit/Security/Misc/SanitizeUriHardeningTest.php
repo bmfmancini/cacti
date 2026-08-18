@@ -15,7 +15,7 @@
  * and path traversal across all callers of sanitize_uri().
  */
 
-$src = file_get_contents(__DIR__ . '/../../../../lib/functions.php');
+$src = file_get_contents(CACTI_PATH_LIBRARY . '/functions.php');
 
 test('sanitize_uri drop-char list contains backslash', function () use ($src) {
     $start = strpos($src, 'function sanitize_uri(');

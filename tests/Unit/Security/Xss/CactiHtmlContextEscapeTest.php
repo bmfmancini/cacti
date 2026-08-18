@@ -16,8 +16,8 @@
  */
 
 beforeAll(function () {
-	require_once dirname(__DIR__, 4) . '/include/global_constants.php';
-	require_once dirname(__DIR__, 4) . '/lib/functions.php';
+	require_once CACTI_PATH_INCLUDE . '/global_constants.php';
+	require_once CACTI_PATH_LIBRARY . '/functions.php';
 });
 
 describe('CACTI_ESC_ELEMENT — HTML element content', function () {

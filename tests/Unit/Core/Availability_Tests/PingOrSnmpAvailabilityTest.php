@@ -5,8 +5,8 @@
  +-------------------------------------------------------------------------+
 */
 
-require_once dirname(__DIR__, 4) . '/include/global_constants.php';
-require_once dirname(__DIR__, 4) . '/lib/ping.php';
+require_once CACTI_PATH_INCLUDE . '/global_constants.php';
+require_once CACTI_PATH_LIBRARY . '/ping.php';
 
 /* ping() references these Cacti helpers; stub them when a lighter bootstrap is
  * in use so the availability logic can be exercised in isolation. */

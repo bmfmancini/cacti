@@ -7,7 +7,7 @@
  +-------------------------------------------------------------------------+
 */
 
-$authSource = file_get_contents(dirname(__DIR__, 4) . '/lib/auth.php');
+$authSource = file_get_contents(CACTI_PATH_LIBRARY . '/auth.php');
 
 // --- GHSA-9ffc-rr2g-c8hh: Remote-User header gate ---
 

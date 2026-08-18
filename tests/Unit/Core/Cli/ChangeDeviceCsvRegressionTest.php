@@ -12,7 +12,7 @@
  +-------------------------------------------------------------------------+
  */
 
-$source = file_get_contents(__DIR__ . '/../../../../cli/change_device.php');
+$source = file_get_contents(CACTI_PATH_BASE . '/cli/change_device.php');
 
 test('legacy id changes do not require interactive confirmation', function () use ($source) {
 	expect($source)->toContain("if (\$file != '' && !\$force)");

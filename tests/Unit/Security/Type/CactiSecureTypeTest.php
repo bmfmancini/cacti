@@ -12,7 +12,7 @@
  +-------------------------------------------------------------------------+
 */
 
-require_once dirname(__DIR__, 4) . '/lib/type_secure.php';
+require_once CACTI_PATH_LIBRARY . '/type_secure.php';
 
 test('CactiSecureType::toInt converts numeric strings to integers', function () {
 	expect(CactiSecureType::toInt('123'))->toBe(123);

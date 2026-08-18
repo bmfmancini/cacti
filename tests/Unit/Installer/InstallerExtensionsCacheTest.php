@@ -23,7 +23,7 @@
  * has not been computed yet or is empty.
  */
 
-$source = file_get_contents(__DIR__ . '/../../../lib/installer.php');
+$source = file_get_contents(CACTI_PATH_LIBRARY . '/installer.php');
 
 $start = strpos($source, 'private function getModules()');
 expect($start)->not->toBeFalse();

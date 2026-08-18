@@ -8,10 +8,10 @@
  +-------------------------------------------------------------------------+
  */
 
-require_once dirname(__DIR__) . '/Helpers/CactiStubs.php';
-require_once dirname(__DIR__, 3) . '/include/global.php';
-require_once dirname(__DIR__, 3) . '/install/functions.php';
-require_once dirname(__DIR__, 3) . '/lib/installer.php';
+require_once CACTI_PATH_BASE . '/tests/Helpers/CactiStubs.php';
+require_once CACTI_PATH_INCLUDE . '/global.php';
+require_once CACTI_PATH_BASE . '/install/functions.php';
+require_once CACTI_PATH_LIBRARY . '/installer.php';
 
 test('installer accepts only complete browser selection payloads', function () {
 	$method   = new ReflectionMethod(Installer::class, 'isCompleteSelectionPayload');

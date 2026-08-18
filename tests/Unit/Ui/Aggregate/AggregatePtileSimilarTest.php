@@ -29,7 +29,7 @@
 // --- helper ---
 
 function getApiAggregateSource(): string {
-	$path = __DIR__ . '/../../../../lib/api_aggregate.php';
+	$path = CACTI_PATH_LIBRARY . '/api_aggregate.php';
 	$src  = file_get_contents($path);
 	expect($src)->not->toBeFalse('Failed to read lib/api_aggregate.php');
 

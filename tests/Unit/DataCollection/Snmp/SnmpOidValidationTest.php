@@ -33,7 +33,7 @@
 // --- source scanning helper ---
 
 function getSnmpValidateOidSource(): string {
-	$snmpPhp = file_get_contents(__DIR__ . '/../../../../lib/snmp.php');
+	$snmpPhp = file_get_contents(CACTI_PATH_LIBRARY . '/snmp.php');
 	expect($snmpPhp)->not->toBeFalse('Failed to read lib/snmp.php');
 
 	$start = strpos($snmpPhp, 'function cacti_snmp_validate_oid(');

@@ -20,7 +20,7 @@
  * equivalence test runs on develop in #7381, where the code is byte-equivalent).
  */
 
-$source = file_get_contents(__DIR__ . '/../../../lib/database.php');
+$source = file_get_contents(CACTI_PATH_LIBRARY . '/database.php');
 
 function _db_col_cache_body(string $src, string $fn): string {
 	$start = strpos($src, 'function ' . $fn . '(');

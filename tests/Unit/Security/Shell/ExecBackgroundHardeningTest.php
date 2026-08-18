@@ -7,9 +7,9 @@
  +-------------------------------------------------------------------------+
 */
 
-$boostSource  = file_get_contents(__DIR__ . '/../../../../lib/boost.php');
-$pollerSource = file_get_contents(__DIR__ . '/../../../../poller.php');
-$pollerLib    = file_get_contents(__DIR__ . '/../../../../lib/poller.php');
+$boostSource  = file_get_contents(CACTI_PATH_LIBRARY . '/boost.php');
+$pollerSource = file_get_contents(CACTI_PATH_BASE . '/poller.php');
+$pollerLib    = file_get_contents(CACTI_PATH_LIBRARY . '/poller.php');
 
 test('boost.php escapes poller path with cacti_escapeshellarg', function () use ($boostSource) {
 	expect($boostSource)->toContain("cacti_escapeshellarg(\$config['base_path'] . '/poller_boost.php')");

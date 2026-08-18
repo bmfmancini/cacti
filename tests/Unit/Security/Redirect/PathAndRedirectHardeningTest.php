@@ -7,9 +7,9 @@
  +-------------------------------------------------------------------------+
 */
 
-$functionsSource = file_get_contents(__DIR__ . '/../../../../lib/functions.php');
-$importSource    = file_get_contents(__DIR__ . '/../../../../lib/import.php');
-$htmlUtilitySource = file_get_contents(__DIR__ . '/../../../../lib/html_utility.php');
+$functionsSource = file_get_contents(CACTI_PATH_LIBRARY . '/functions.php');
+$importSource    = file_get_contents(CACTI_PATH_LIBRARY . '/import.php');
+$htmlUtilitySource = file_get_contents(CACTI_PATH_LIBRARY . '/html_utility.php');
 
 test('cacti_header redirects using validated save_url', function () use ($functionsSource) {
 	$start = strpos($functionsSource, 'function cacti_header(');

@@ -20,7 +20,7 @@
  * redirects to prevent SSRF via fetch.
  */
 
-$helpPath = __DIR__ . '/../../../../help.php';
+$helpPath = CACTI_PATH_BASE . '/help.php';
 
 // --- help.php: path traversal and SSL verification ---
 

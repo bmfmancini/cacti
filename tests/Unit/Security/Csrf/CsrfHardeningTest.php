@@ -1,7 +1,7 @@
 <?php
 
-$globalPath = __DIR__ . '/../../../../include/global.php';
-$csrfPath = __DIR__ . '/../../../../include/vendor/csrf/csrf-magic.php';
+$globalPath = CACTI_PATH_INCLUDE . '/global.php';
+$csrfPath = CACTI_PATH_INCLUDE . '/vendor/csrf/csrf-magic.php';
 
 test('global.php GET deny-list covers state-mutating actions', function () use ($globalPath) {
     $source = file_get_contents($globalPath);

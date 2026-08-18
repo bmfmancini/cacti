@@ -17,9 +17,9 @@
  * so the advisory it guards against remains traceable.
  */
 
-$authLoginSource   = file_get_contents(__DIR__ . '/../../../../auth_login.php');
-$includeAuthSource = file_get_contents(__DIR__ . '/../../../../include/auth.php');
-$libAuthSource     = file_get_contents(__DIR__ . '/../../../../lib/auth.php');
+$authLoginSource   = file_get_contents(CACTI_PATH_BASE . '/auth_login.php');
+$includeAuthSource = file_get_contents(CACTI_PATH_INCLUDE . '/auth.php');
+$libAuthSource     = file_get_contents(CACTI_PATH_LIBRARY . '/auth.php');
 
 // GHSA-273r: session fixation across login / cookie-restore / basic-auth transitions.
 test('GHSA-273r: cacti_auth_transition rotates the session id', function () use ($libAuthSource) {

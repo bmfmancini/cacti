@@ -36,7 +36,7 @@ if (!function_exists('clean_up_lines')) {
 	}
 }
 
-require_once dirname(__DIR__, 3) . '/lib/database.php';
+require_once CACTI_PATH_LIBRARY . '/database.php';
 
 class FakeDbCommitStatement {
 	public $cell_value;

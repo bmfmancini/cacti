@@ -25,7 +25,7 @@ if (!defined('CACTI_CSP_REPORT_TEST_MODE')) {
 	define('CACTI_CSP_REPORT_TEST_MODE', true);
 }
 
-require_once dirname(__DIR__, 2) . '/lib/csp_report_endpoint.php';
+require_once CACTI_PATH_LIBRARY . '/csp_report_endpoint.php';
 
 test('a body over the cap is refused as oversize, not as bad JSON', function () {
 	$headers = ['CONTENT_TYPE' => 'application/csp-report'];
@@ -49,7 +49,7 @@ test('a body at the cap is still measured, not truncated past the check', functi
 });
 
 test('the endpoint keeps the byte that proves the body was too long', function () {
-	$src = file_get_contents(dirname(__DIR__, 2) . '/lib/csp_report_endpoint.php');
+	$src = file_get_contents(CACTI_PATH_LIBRARY . '/csp_report_endpoint.php');
 
 	/* Assert the cap and the absence of the truncating slice rather than the
 	   call used to read, so moving to another bounded read does not fail this
@@ -59,14 +59,14 @@ test('the endpoint keeps the byte that proves the body was too long', function (
 });
 
 test('the read is bounded rather than trusting a length argument', function () {
-	$src = file_get_contents(dirname(__DIR__, 2) . '/lib/csp_report_endpoint.php');
+	$src = file_get_contents(CACTI_PATH_LIBRARY . '/csp_report_endpoint.php');
 
 	// the length argument is not honoured for php://input on every SAPI
 	expect($src)->toContain('while (!feof($input) && strlen($rawBody) <= 16384)');
 });
 
 test('an untrustworthy counter directory drops the report rather than uncapping it', function () {
-	$src = file_get_contents(dirname(__DIR__, 2) . '/lib/csp_report_endpoint.php');
+	$src = file_get_contents(CACTI_PATH_LIBRARY . '/csp_report_endpoint.php');
 
 	/* Logging without a cap would let anyone on the network fill the disk
 	   through an endpoint that needs no credentials, and a local user can
@@ -76,13 +76,13 @@ test('an untrustworthy counter directory drops the report rather than uncapping 
 });
 
 test('the request method is guarded like the other server values', function () {
-	$src = file_get_contents(dirname(__DIR__, 2) . '/lib/csp_report_endpoint.php');
+	$src = file_get_contents(CACTI_PATH_LIBRARY . '/csp_report_endpoint.php');
 
 	expect($src)->toContain("!isset(\$_SERVER['REQUEST_METHOD'])");
 });
 
 test('counters live in a directory of their own, not loose in the temp dir', function () {
-	$src = file_get_contents(dirname(__DIR__, 2) . '/lib/csp_report_endpoint.php');
+	$src = file_get_contents(CACTI_PATH_LIBRARY . '/csp_report_endpoint.php');
 
 	expect($src)->not->toContain("sys_get_temp_dir() . '/cacti_csp_' . hash(")
 		->and($src)->toContain("\$dir = sys_get_temp_dir() . '/cacti_csp';")

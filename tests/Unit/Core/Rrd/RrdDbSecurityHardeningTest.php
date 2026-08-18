@@ -12,9 +12,9 @@
  +-------------------------------------------------------------------------+
 */
 
-$rrdSource      = file_get_contents(dirname(__DIR__, 4) . '/lib/rrd.php');
-$dbSource       = file_get_contents(dirname(__DIR__, 4) . '/lib/database.php');
-$htmlUtilSource = file_get_contents(dirname(__DIR__, 4) . '/lib/html_utility.php');
+$rrdSource      = file_get_contents(CACTI_PATH_LIBRARY . '/rrd.php');
+$dbSource       = file_get_contents(CACTI_PATH_LIBRARY . '/database.php');
+$htmlUtilSource = file_get_contents(CACTI_PATH_LIBRARY . '/html_utility.php');
 
 // --- lib/rrd.php: rrdtool_function_create ---
 

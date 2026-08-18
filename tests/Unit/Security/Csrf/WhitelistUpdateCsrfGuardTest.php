@@ -15,7 +15,7 @@
  * gadget on an authenticated admin can fire the rebuild push.
  */
 
-$source = file_get_contents(__DIR__ . '/../../../../data_input.php');
+$source = file_get_contents(CACTI_PATH_BASE . '/data_input.php');
 
 test('whitelist_update body contains a REQUEST_METHOD POST guard', function () use ($source) {
 	expect($source)->toContain("\$_SERVER['REQUEST_METHOD'] !== 'POST'");

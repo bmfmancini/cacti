@@ -16,7 +16,7 @@
  * so the advisory it guards against remains traceable.
  */
 
-$ldapSource = file_get_contents(__DIR__ . '/../../../../lib/ldap.php');
+$ldapSource = file_get_contents(CACTI_PATH_LIBRARY . '/ldap.php');
 
 // GHSA-pmgm: isUserInLDAPGroup() must build its filter through cacti_ldap_filter(),
 // which escapes each variable with ldap_escape(..., LDAP_ESCAPE_FILTER), instead of

@@ -7,9 +7,9 @@
  +-------------------------------------------------------------------------+
 */
 
-$snmpSource = file_get_contents(__DIR__ . '/../../../../lib/snmp.php');
-$pingSource = file_get_contents(__DIR__ . '/../../../../lib/ping.php');
-$funcSource = file_get_contents(__DIR__ . '/../../../../lib/functions.php');
+$snmpSource = file_get_contents(CACTI_PATH_LIBRARY . '/snmp.php');
+$pingSource = file_get_contents(CACTI_PATH_LIBRARY . '/ping.php');
+$funcSource = file_get_contents(CACTI_PATH_LIBRARY . '/functions.php');
 
 test('cacti_snmp_session brackets IPv6 before port append', function () use ($snmpSource) {
 	$start = strpos($snmpSource, 'function cacti_snmp_session(');

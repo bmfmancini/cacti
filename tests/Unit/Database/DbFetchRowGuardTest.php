@@ -12,8 +12,6 @@
  +-------------------------------------------------------------------------+
 */
 
-$basePath = dirname(__DIR__, 3);
-
 $files = array(
 	'auth_login.php',
 	'graph_view.php',
@@ -34,7 +32,7 @@ $files = array(
 );
 
 foreach ($files as $file) {
-	$path = $basePath . '/' . $file;
+	$path = CACTI_PATH_BASE . '/' . $file;
 
 	test("$file guards db_fetch_row results before dereference", function () use ($path, $file) {
 		if (!file_exists($path)) {

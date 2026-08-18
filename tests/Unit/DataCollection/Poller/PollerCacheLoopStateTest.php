@@ -29,8 +29,8 @@
  * source and asserts that pattern.
  */
 
-$utilitySource   = file_get_contents(__DIR__ . '/../../../../lib/utility.php');
-$functionsSource = file_get_contents(__DIR__ . '/../../../../lib/functions.php');
+$utilitySource   = file_get_contents(CACTI_PATH_LIBRARY . '/utility.php');
+$functionsSource = file_get_contents(CACTI_PATH_LIBRARY . '/functions.php');
 
 /**
  * Slice every foreach($outputs as $output) body out of the source and

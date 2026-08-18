@@ -5,8 +5,8 @@
  +-------------------------------------------------------------------------+
 */
 
-require_once dirname(__DIR__, 3) . '/lib/functions.php';
-require_once dirname(__DIR__, 3) . '/lib/html_utility.php';
+require_once CACTI_PATH_LIBRARY . '/functions.php';
+require_once CACTI_PATH_LIBRARY . '/html_utility.php';
 
 test('sanitize_sql_column() allows valid columns', function () {
 	expect(sanitize_sql_column('hostname'))->toBe('hostname');

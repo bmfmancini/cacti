@@ -15,7 +15,7 @@
  * validate_redirect_url + json_encode for JS-safe quoting.
  */
 
-$src = file_get_contents(__DIR__ . '/../../../../graph_view.php');
+$src = file_get_contents(CACTI_PATH_BASE . '/graph_view.php');
 
 test('graph_view refreshPage assignment uses json_encode for JS-safe output', function () use ($src) {
     expect($src)->toContain('json_encode(str_replace(');

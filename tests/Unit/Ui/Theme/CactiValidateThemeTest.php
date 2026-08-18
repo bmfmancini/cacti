@@ -19,8 +19,8 @@
  */
 
 beforeAll(function () {
-	require_once dirname(__DIR__, 4) . '/include/global_constants.php';
-	require_once dirname(__DIR__, 4) . '/lib/functions.php';
+	require_once CACTI_PATH_INCLUDE . '/global_constants.php';
+	require_once CACTI_PATH_LIBRARY . '/functions.php';
 });
 
 /**
@@ -34,7 +34,7 @@ function resolve_theme_under(array $allowlist, $requested, $default) {
 }
 
 describe('cacti_validate_theme source contract', function () {
-	$src = file_get_contents(__DIR__ . '/../../../../lib/functions.php');
+	$src = file_get_contents(CACTI_PATH_LIBRARY . '/functions.php');
 
 	it('uses static cache so scandir runs once per request', function () use ($src) {
 		expect($src)->toContain('static $valid_themes');
@@ -101,9 +101,9 @@ describe('theme allowlist algorithm', function () {
 });
 
 describe('theme ingress enforcement', function () {
-	$graphImageSource = file_get_contents(__DIR__ . '/../../../../graph_image.php');
-	$graphJsonSource  = file_get_contents(__DIR__ . '/../../../../graph_json.php');
-	$remoteSource     = file_get_contents(__DIR__ . '/../../../../remote_agent.php');
+	$graphImageSource = file_get_contents(CACTI_PATH_BASE . '/graph_image.php');
+	$graphJsonSource  = file_get_contents(CACTI_PATH_BASE . '/graph_json.php');
+	$remoteSource     = file_get_contents(CACTI_PATH_BASE . '/remote_agent.php');
 
 	it('uses cacti_validate_theme in graph_image request handling', function () use ($graphImageSource) {
 		expect($graphImageSource)->toContain("cacti_validate_theme(get_request_var('graph_theme'))");

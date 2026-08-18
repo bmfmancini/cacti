@@ -22,7 +22,7 @@
  * $assert_fail is reset, and before the action switch.
  */
 
-$source = file_get_contents(__DIR__ . '/../../../../cmd.php');
+$source = file_get_contents(CACTI_PATH_BASE . '/cmd.php');
 
 test('cmd.php parses and still contains the reindex foreach', function () use ($source) {
 	expect($source)->toContain('foreach ($reindex as $index_item)');

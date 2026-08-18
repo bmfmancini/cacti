@@ -46,7 +46,7 @@
  * GHSA-c4qp-j9r9-fq24 protection holds.
  */
 
-$functionsSource = file_get_contents(__DIR__ . '/../../../../lib/functions.php');
+$functionsSource = file_get_contents(CACTI_PATH_LIBRARY . '/functions.php');
 
 /**
  * Extract cacti_input_string_is_safe() from lib/functions.php into a

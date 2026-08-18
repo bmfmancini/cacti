@@ -17,10 +17,8 @@
  +-------------------------------------------------------------------------+
  */
 
-$root = dirname(__DIR__, 3);
-
-test('background installation always releases its lock and propagates failure', function () use ($root) {
-	$source = file_get_contents($root . '/install/background.php');
+test('background installation always releases its lock and propagates failure', function () {
+	$source = file_get_contents(CACTI_PATH_BASE . '/install/background.php');
 
 	expect($source)->not->toBeFalse();
 	expect($source)->toContain('$installer_process_timeout = 86400;');

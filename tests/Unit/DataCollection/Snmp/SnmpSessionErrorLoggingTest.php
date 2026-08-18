@@ -105,7 +105,7 @@ function cacti_log($message, $output, $environ, $level) {
 	return true;
 }
 
-$source = file_get_contents(dirname(__DIR__, 4) . '/lib/snmp.php');
+$source = file_get_contents(CACTI_PATH_LIBRARY . '/snmp.php');
 
 if ($source === false) {
 	throw new \RuntimeException('Unable to read lib/snmp.php for the SNMP error logging test.');

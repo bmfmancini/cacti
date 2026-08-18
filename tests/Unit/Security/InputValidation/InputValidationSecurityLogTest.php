@@ -54,7 +54,7 @@ function cacti_log($message, $output, $environ) {
 	return true;
 }
 
-$source = file_get_contents(dirname(__DIR__, 4) . '/lib/html_validate.php');
+$source = file_get_contents(CACTI_PATH_LIBRARY . '/html_validate.php');
 
 if ($source === false) {
 	throw new \RuntimeException('Unable to read lib/html_validate.php for the validation security-log test.');
@@ -116,7 +116,7 @@ test('entropy failures retain a usable correlation identifier', function () {
 });
 
 test('validation diagnostics include the structured event correlation ID', function () {
-	$source = file_get_contents(dirname(__DIR__, 4) . '/lib/html_validate.php');
+	$source = file_get_contents(CACTI_PATH_LIBRARY . '/html_validate.php');
 
 	expect($source)->toContain('$event_id = security_log_input_validation_failure($variable)')
 		->and(substr_count($source, "'Validation Error, Event: ' . \$event_id"))->toBe(2)

@@ -13,8 +13,7 @@
  * four post-fix shapes are present. Runs without Cacti's bootstrap.
  */
 
-$repoRoot = __DIR__ . '/../../../..';
-$utility  = file_get_contents("$repoRoot/lib/utility.php");
+$utility = file_get_contents(CACTI_PATH_LIBRARY . '/utility.php');
 
 test('lib/utility.php parses and contains the touched functions', function () use ($utility) {
 	expect($utility)->toContain('function update_poller_cache($data_source, $commit = false)');

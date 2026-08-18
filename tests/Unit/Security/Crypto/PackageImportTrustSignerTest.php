@@ -22,17 +22,15 @@
  * as the only gate. Structural check: none of those pieces may still exist.
  */
 
-$repoRoot = __DIR__ . '/../../../../';
-
-test('form_save() always gates on package_validate_signature(), no bypass branch', function () use ($repoRoot) {
-	$src = file_get_contents("$repoRoot/package_import.php");
+test('form_save() always gates on package_validate_signature(), no bypass branch', function () {
+	$src = file_get_contents(CACTI_PATH_BASE . '/package_import.php');
 
 	expect($src)->toContain('if (!package_validate_signature($xmlfile)) {');
 	expect($src)->not->toContain('isset_request_var(\'trust_signer\')');
 });
 
-test('trust_signer is gone from validate_request_vars(), the form, and the JS', function () use ($repoRoot) {
-	$src = file_get_contents("$repoRoot/package_import.php");
+test('trust_signer is gone from validate_request_vars(), the form, and the JS', function () {
+	$src = file_get_contents(CACTI_PATH_BASE . '/package_import.php');
 
 	expect($src)->not->toContain('trust_signer');
 });

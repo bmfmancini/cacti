@@ -5,9 +5,8 @@
  +-------------------------------------------------------------------------+
 */
 
-$root            = dirname(__DIR__, 3);
-$installerSource = file_get_contents($root . '/lib/installer.php');
-$cliSource       = file_get_contents($root . '/cli/install_cacti.php');
+$installerSource = file_get_contents(CACTI_PATH_LIBRARY . '/installer.php');
+$cliSource       = file_get_contents(CACTI_PATH_BASE . '/cli/install_cacti.php');
 
 if ($installerSource === false || $cliSource === false) {
 	throw new RuntimeException('Unable to read installer sources');

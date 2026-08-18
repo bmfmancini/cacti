@@ -37,10 +37,10 @@
  *      of an inline regex so the two paths cannot drift.
  */
 
-$scriptServerSource = file_get_contents(__DIR__ . '/../../../script_server.php');
-$functionsSource    = file_get_contents(__DIR__ . '/../../../lib/functions.php');
-$dataInputSource    = file_get_contents(__DIR__ . '/../../../data_input.php');
-$importSource       = file_get_contents(__DIR__ . '/../../../lib/import.php');
+$scriptServerSource = file_get_contents(CACTI_PATH_BASE . '/script_server.php');
+$functionsSource    = file_get_contents(CACTI_PATH_LIBRARY . '/functions.php');
+$dataInputSource    = file_get_contents(CACTI_PATH_BASE . '/data_input.php');
+$importSource       = file_get_contents(CACTI_PATH_LIBRARY . '/import.php');
 
 /* --- Finding 1: script_server validates path unconditionally --- */
 

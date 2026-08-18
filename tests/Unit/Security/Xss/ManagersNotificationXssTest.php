@@ -7,7 +7,7 @@
  +-------------------------------------------------------------------------+
 */
 
-$managersSource = file_get_contents(__DIR__ . '/../../../../managers.php');
+$managersSource = file_get_contents(CACTI_PATH_BASE . '/managers.php');
 
 test('snmp notification fallback output is html escaped', function () use ($managersSource) {
 	expect($managersSource)->toContain("print '<td>' . html_escape(\$item['notification']) . '</td>';");

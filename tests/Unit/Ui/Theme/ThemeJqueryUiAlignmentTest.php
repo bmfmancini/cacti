@@ -13,7 +13,7 @@
 */
 
 function read_theme_jquery_ui_css(string $theme): string {
-	$path = dirname(__DIR__, 4) . "/include/themes/$theme/jquery-ui.css";
+	$path = CACTI_PATH_INCLUDE . "/themes/$theme/jquery-ui.css";
 
 	expect(is_file($path))->toBeTrue("Missing jquery-ui.css for theme [$theme]");
 

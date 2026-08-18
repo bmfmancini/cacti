@@ -12,7 +12,7 @@
  +-------------------------------------------------------------------------+
 */
 
-$htmlFilterSource = file_get_contents(dirname(__DIR__, 4) . '/lib/html_filter.php');
+$htmlFilterSource = file_get_contents(CACTI_PATH_LIBRARY . '/html_filter.php');
 
 test('form_id is escaped with htmlspecialchars in create_filter', function () use ($htmlFilterSource) {
 	expect(str_contains($htmlFilterSource, 'htmlspecialchars($this->form_id'))

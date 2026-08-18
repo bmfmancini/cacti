@@ -17,7 +17,7 @@
  */
 
 beforeAll(function () {
-	require_once dirname(__DIR__, 4) . '/lib/functions.php';
+	require_once CACTI_PATH_LIBRARY . '/functions.php';
 });
 
 describe('cacti_validate_sort_column', function () {

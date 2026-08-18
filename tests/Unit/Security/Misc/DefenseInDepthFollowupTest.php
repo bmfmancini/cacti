@@ -7,12 +7,12 @@
  +-------------------------------------------------------------------------+
 */
 
-$funcSource  = file_get_contents(__DIR__ . '/../../../../lib/functions.php');
-$dbSource    = file_get_contents(__DIR__ . '/../../../../lib/database.php');
-$boostSource = file_get_contents(__DIR__ . '/../../../../poller_boost.php');
-$importSource = file_get_contents(__DIR__ . '/../../../../package_import.php');
-$indexSource = file_get_contents(__DIR__ . '/../../../../index.php');
-$ssSource    = file_get_contents(__DIR__ . '/../../../../script_server.php');
+$funcSource  = file_get_contents(CACTI_PATH_LIBRARY . '/functions.php');
+$dbSource    = file_get_contents(CACTI_PATH_LIBRARY . '/database.php');
+$boostSource = file_get_contents(CACTI_PATH_BASE . '/poller_boost.php');
+$importSource = file_get_contents(CACTI_PATH_BASE . '/package_import.php');
+$indexSource = file_get_contents(CACTI_PATH_BASE . '/index.php');
+$ssSource    = file_get_contents(CACTI_PATH_BASE . '/script_server.php');
 
 // --- cacti_csv_safe ---
 
@@ -57,7 +57,7 @@ test('cacti_path_is_within handles Windows case-insensitive comparison', functio
 	$start = strpos($funcSource, 'function cacti_path_is_within(');
 	$body = substr($funcSource, $start, 800);
 	expect($body)->toContain("DIRECTORY_SEPARATOR === '\\\\'");
-	expect($body)->toContain('strtolower(');
+	expect($body)->toContain('cacti_normalize_windows_path(');
 });
 
 // --- index.php uses cacti_path_is_within ---
@@ -68,8 +68,8 @@ test('index.php uses cacti_path_is_within for include path validation', function
 
 // --- script_server.php uses cacti_path_is_within ---
 
-test('script_server.php uses cacti_path_is_within for include path validation', function () use ($ssSource) {
-	expect($ssSource)->toContain('cacti_path_is_within(');
+test('script_server.php validates include path against allowed roots', function () use ($ssSource) {
+	expect($ssSource)->toContain('script_server_path_is_allowed(');
 });
 
 // --- db_replace redaction ---

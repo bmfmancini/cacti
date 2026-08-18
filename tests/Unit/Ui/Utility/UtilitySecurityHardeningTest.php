@@ -7,7 +7,7 @@
  +-------------------------------------------------------------------------+
 */
 
-$utilSource = file_get_contents(__DIR__ . '/../../../../lib/utility.php');
+$utilSource = file_get_contents(CACTI_PATH_LIBRARY . '/utility.php');
 
 test('utility_php_extensions validates binary path before shell_exec', function () use ($utilSource) {
 	expect($utilSource)->toContain("!preg_match('/^php");

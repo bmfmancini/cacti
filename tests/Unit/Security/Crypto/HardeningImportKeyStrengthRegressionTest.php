@@ -18,7 +18,7 @@
  * fix; reverting the patch causes at least one test to fail.
  */
 
-$importSource = file_get_contents(__DIR__ . '/../../../../lib/import.php');
+$importSource = file_get_contents(CACTI_PATH_LIBRARY . '/import.php');
 
 $start = strpos($importSource, 'function import_read_package_data(');
 $end   = strpos($importSource, "\nfunction ", $start + 1);

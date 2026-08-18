@@ -14,7 +14,7 @@
  * miss placeholders from exported/base64 input strings.
  */
 
-$importSource = file_get_contents(__DIR__ . '/../../../lib/import.php');
+$importSource = file_get_contents(CACTI_PATH_LIBRARY . '/import.php');
 
 test('data input import regenerates field sequences from decoded input string', function () use ($importSource) {
 	expect($importSource)->toContain("generate_data_input_field_sequences(\$save['input_string'], \$data_input_id);");

@@ -7,9 +7,9 @@
  +-------------------------------------------------------------------------+
 */
 
-$boostSource  = file_get_contents(__DIR__ . '/../../../../lib/boost.php');
-$pollerSource = file_get_contents(__DIR__ . '/../../../../lib/poller.php');
-$funcSource   = file_get_contents(__DIR__ . '/../../../../lib/functions.php');
+$boostSource  = file_get_contents(CACTI_PATH_LIBRARY . '/boost.php');
+$pollerSource = file_get_contents(CACTI_PATH_LIBRARY . '/poller.php');
+$funcSource   = file_get_contents(CACTI_PATH_LIBRARY . '/functions.php');
 
 test('boost_graph_set_file uses umask instead of chmod', function () use ($boostSource) {
 	$start = strpos($boostSource, 'function boost_graph_set_file(');

@@ -19,7 +19,7 @@
  * sites through it instead of the bare posix_kill($pid, 0).
  */
 
-require_once dirname(__DIR__, 4) . '/lib/poller.php';
+require_once CACTI_PATH_LIBRARY . '/poller.php';
 
 /*
  * On hosts without /proc (macOS/BSD test runners), cacti_process_still_running()
@@ -101,14 +101,14 @@ test('falls back to the bare existence check when /proc is unavailable', functio
 });
 
 test('register_process_start() and timeout_kill_registered_processes() route through the guard, not a bare posix_kill(pid, 0)', function () {
-	$src = file_get_contents(dirname(__DIR__, 4) . '/lib/poller.php');
+	$src = file_get_contents(CACTI_PATH_LIBRARY . '/poller.php');
 
 	expect(substr_count($src, 'cacti_process_still_running($r[\'pid\'])'))->toBe(3);
 	expect($src)->not->toContain('$r[\'pid\'] > 0 && posix_kill($r[\'pid\'], 0)');
 });
 
 test('dsstats_kill_running_processes() guards its SIGTERM with the same check', function () {
-	$src = file_get_contents(dirname(__DIR__, 4) . '/lib/dsstats.php');
+	$src = file_get_contents(CACTI_PATH_LIBRARY . '/dsstats.php');
 
 	$pos = strpos($src, 'function dsstats_kill_running_processes()');
 	expect($pos)->not->toBeFalse();

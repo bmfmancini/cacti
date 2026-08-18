@@ -22,7 +22,7 @@
  * The fix is the canonical `!== false` strpos idiom.
  */
 
-$source = file_get_contents(__DIR__ . '/../../../lib/time.php');
+$source = file_get_contents(CACTI_PATH_LIBRARY . '/time.php');
 
 test('lib/time.php uses !== false in month_shift', function () use ($source) {
 	$start = strpos($source, 'function month_shift(');

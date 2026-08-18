@@ -7,7 +7,7 @@
  +-------------------------------------------------------------------------+
 */
 
-$dqSource = file_get_contents(__DIR__ . '/../../../../lib/data_query.php');
+$dqSource = file_get_contents(CACTI_PATH_LIBRARY . '/data_query.php');
 
 test('GHSA-gx62-3v55-846j: get_data_query_array calls cacti_path_is_within before file read', function () use ($dqSource) {
 	$start = strpos($dqSource, 'function get_data_query_array(');

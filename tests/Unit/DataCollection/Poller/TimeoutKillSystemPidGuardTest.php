@@ -22,7 +22,7 @@
  * here; require_once dedupes by path across the suite.
  */
 
-require_once __DIR__ . '/../../../../lib/poller.php';
+require_once CACTI_PATH_LIBRARY . '/poller.php';
 
 test('is_system_pid rejects init and the reserved low range', function () {
 	expect(is_system_pid(1))->toBeTrue();
@@ -42,7 +42,7 @@ test('is_system_pid coerces numeric strings from the processes table', function 
 });
 
 test('timeout_kill_registered_processes gates posix_kill behind is_system_pid', function () {
-	$source = file_get_contents(__DIR__ . '/../../../../lib/poller.php');
+	$source = file_get_contents(CACTI_PATH_LIBRARY . '/poller.php');
 	expect($source)->not->toBeFalse();
 
 	$start = strpos($source, 'function timeout_kill_registered_processes');

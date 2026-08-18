@@ -49,7 +49,7 @@ function proc_open($command, $descriptors, &$pipes, $cwd = null, $environment = 
 	return \proc_open($command, $descriptors, $pipes, $cwd, $environment, $options);
 }
 
-$source = file_get_contents(dirname(__DIR__, 4) . '/lib/poller.php');
+$source = file_get_contents(CACTI_PATH_LIBRARY . '/poller.php');
 preg_match('/function exec_background_process\(.*?^}\R/ms', $source, $matches);
 eval('namespace ShelllessBackgroundProcessTest;' . $matches[0]);
 preg_match('/function poller_enable_child_reaping\(.*?^}\R/ms', $source, $matches);
@@ -139,7 +139,7 @@ test('invalid executables fail closed', function () {
 });
 
 test('cactid supplies the poller command as discrete arguments', function () {
-	$source = file_get_contents(dirname(__DIR__, 4) . '/cactid.php');
+	$source = file_get_contents(CACTI_PATH_BASE . '/cactid.php');
 
 	expect($source)->toContain("exec_background_process(\$php_binary, \$command)")
 		->and($source)->toContain('poller_enable_child_reaping()')

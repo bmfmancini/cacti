@@ -21,7 +21,7 @@
  * (strtotime() returns false), and the false return was stored verbatim.
  */
 
-$source = file_get_contents(__DIR__ . '/../../../../lib/api_automation.php');
+$source = file_get_contents(CACTI_PATH_LIBRARY . '/api_automation.php');
 
 test('lib/api_automation.php spells the fourth week correctly', function () use ($source) {
 	expect($source)->toContain("\$sweek = 'fourth';");

@@ -19,12 +19,12 @@
  * before being embedded in JavaScript.
  */
 
-$authProfilePath = __DIR__ . '/../../../../auth_profile.php';
-$authResetpasswordPath = __DIR__ . '/../../../../auth_resetpassword.php';
-$authChangepasswordPath = __DIR__ . '/../../../../auth_changepassword.php';
-$pluginsPath = __DIR__ . '/../../../../plugins.php';
-$htmlGraphPath = __DIR__ . '/../../../../lib/html_graph.php';
-$dataDebugPath = __DIR__ . '/../../../../data_debug.php';
+$authProfilePath = CACTI_PATH_BASE . '/auth_profile.php';
+$authResetpasswordPath = CACTI_PATH_BASE . '/auth_resetpassword.php';
+$authChangepasswordPath = CACTI_PATH_BASE . '/auth_changepassword.php';
+$pluginsPath = CACTI_PATH_BASE . '/plugins.php';
+$htmlGraphPath = CACTI_PATH_LIBRARY . '/html_graph.php';
+$dataDebugPath = CACTI_PATH_BASE . '/data_debug.php';
 
 test('auth_profile encodes tab for JavaScript and redirect URL', function () use ($authProfilePath) {
 	$contents = file_get_contents($authProfilePath);

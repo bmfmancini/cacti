@@ -20,14 +20,14 @@
  * so the advisory it guards against remains traceable.
  */
 
-$utilitiesSource      = file_get_contents(__DIR__ . '/../../../../utilities.php');
-$databaseSource       = file_get_contents(__DIR__ . '/../../../../lib/database.php');
-$graphViewSource      = file_get_contents(__DIR__ . '/../../../../graph_view.php');
-$reportsSource        = file_get_contents(__DIR__ . '/../../../../lib/reports.php');
-$aggregateGraphsSource = file_get_contents(__DIR__ . '/../../../../aggregate_graphs.php');
-$htmlReportsSource    = file_get_contents(__DIR__ . '/../../../../lib/html_reports.php');
-$managersSource       = file_get_contents(dirname(__DIR__, 4) . '/managers.php');
-$apiAutomationSource  = file_get_contents(__DIR__ . '/../../../../lib/api_automation.php');
+$utilitiesSource      = file_get_contents(CACTI_PATH_BASE . '/utilities.php');
+$databaseSource       = file_get_contents(CACTI_PATH_LIBRARY . '/database.php');
+$graphViewSource      = file_get_contents(CACTI_PATH_BASE . '/graph_view.php');
+$reportsSource        = file_get_contents(CACTI_PATH_LIBRARY . '/reports.php');
+$aggregateGraphsSource = file_get_contents(CACTI_PATH_BASE . '/aggregate_graphs.php');
+$htmlReportsSource    = file_get_contents(CACTI_PATH_LIBRARY . '/html_reports.php');
+$managersSource       = file_get_contents(CACTI_PATH_BASE . '/managers.php');
+$apiAutomationSource  = file_get_contents(CACTI_PATH_LIBRARY . '/api_automation.php');
 
 // GHSA-3p6w: cacti_validate_sort_column() allowlist in utilities.php sort_column sites.
 test('GHSA-3p6w: utilities.php contains the 3p6w fix', function () use ($utilitiesSource) {

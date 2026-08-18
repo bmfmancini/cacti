@@ -34,7 +34,7 @@
 // --- source scanning helper ---
 
 function getPollerMultiBlock(): string {
-	$pollerPhp = file_get_contents(__DIR__ . '/../../../../lib/poller.php');
+	$pollerPhp = file_get_contents(CACTI_PATH_LIBRARY . '/poller.php');
 	expect($pollerPhp)->not->toBeFalse('Failed to read lib/poller.php');
 
 	return $pollerPhp;

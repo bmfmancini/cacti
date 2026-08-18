@@ -22,18 +22,12 @@
  * GHSA-mjvw: Path traversal via format_file in reports
  */
 
-$reportsPath         = __DIR__ . '/../../../../lib/reports.php';
-$aggregateGraphsPath = __DIR__ . '/../../../../aggregate_graphs.php';
-$importPath          = __DIR__ . '/../../../../lib/import.php';
-$packageImportPath   = __DIR__ . '/../../../../package_import.php';
-$htmlReportsPath     = __DIR__ . '/../../../../lib/html_reports.php';
-
 // ---------------------------------------------------------------------------
 // GHSA-6233: Stored XSS in report tree titles
 // ---------------------------------------------------------------------------
 
-test('GHSA-6233: reports.php escapes all title outputs with htmle()', function () use ($reportsPath) {
-	$contents = file_get_contents($reportsPath);
+test('GHSA-6233: reports.php escapes all title outputs with htmle()', function () {
+	$contents = file_get_contents(CACTI_PATH_LIBRARY . '/reports.php');
 
 	// No raw <h3>$title</h3> interpolation should remain after the fix.
 	$unescapedCount = substr_count($contents, '<h3>$title</h3>');
@@ -44,8 +38,8 @@ test('GHSA-6233: reports.php escapes all title outputs with htmle()', function (
 	expect($escapedCount)->toBeGreaterThanOrEqual(7);
 });
 
-test('GHSA-6233: reports.php line 943 uses htmle() for report name (safe pattern exists)', function () use ($reportsPath) {
-	$contents = file_get_contents($reportsPath);
+test('GHSA-6233: reports.php line 943 uses htmle() for report name (safe pattern exists)', function () {
+	$contents = file_get_contents(CACTI_PATH_LIBRARY . '/reports.php');
 
 	expect($contents)->toContain('<h3>" . htmle($report[\'name\']) . \'</h3>');
 });
@@ -54,16 +48,16 @@ test('GHSA-6233: reports.php line 943 uses htmle() for report name (safe pattern
 // GHSA-fwh3: Reflected XSS via rfilter in aggregate_graphs.php
 // ---------------------------------------------------------------------------
 
-test('GHSA-fwh3: aggregate_graphs.php escapes rfilter with htmlerv in value attribute', function () use ($aggregateGraphsPath) {
-	$contents = file_get_contents($aggregateGraphsPath);
+test('GHSA-fwh3: aggregate_graphs.php escapes rfilter with htmlerv in value attribute', function () {
+	$contents = file_get_contents(CACTI_PATH_BASE . '/aggregate_graphs.php');
 
 	// htmlerv() must be used instead of raw grv() in the value attribute.
 	expect($contents)->toContain("htmlerv('rfilter')");
 	expect($contents)->not->toContain("value='<?php print grv('rfilter'); ?>'");
 });
 
-test('GHSA-fwh3: contract — rfilter output in HTML attributes must use htmlerv()', function () use ($aggregateGraphsPath) {
-	$contents = file_get_contents($aggregateGraphsPath);
+test('GHSA-fwh3: contract — rfilter output in HTML attributes must use htmlerv()', function () {
+	$contents = file_get_contents(CACTI_PATH_BASE . '/aggregate_graphs.php');
 
 	// htmlerv() is the Cacti convention for encoding HTML attribute values
 	// retrieved from request variables. The raw grv() call must be replaced.
@@ -117,8 +111,8 @@ test('GHSA-vp35: traversal payload resolves outside CACTI_PATH_BASE', function (
 	expect(str_starts_with('/' . $normalized, $base . '/'))->toBeFalse();
 });
 
-test('GHSA-vp35: contract — import file paths are validated with validate_relative_path_within', function () use ($importPath) {
-	$contents = file_get_contents($importPath);
+test('GHSA-vp35: contract — import file paths are validated with validate_relative_path_within', function () {
+	$contents = file_get_contents(CACTI_PATH_LIBRARY . '/import.php');
 
 	// The fix must validate the path before writing.
 	expect($contents)->toContain('validate_relative_path_within');
@@ -128,8 +122,8 @@ test('GHSA-vp35: contract — import file paths are validated with validate_rela
 // GHSA-pr9x: Path traversal in package_import.php read
 // ---------------------------------------------------------------------------
 
-test('GHSA-pr9x: package_import.php validates filename with validate_relative_path_within', function () use ($packageImportPath) {
-	$contents = file_get_contents($packageImportPath);
+test('GHSA-pr9x: package_import.php validates filename with validate_relative_path_within', function () {
+	$contents = file_get_contents(CACTI_PATH_BASE . '/package_import.php');
 
 	// The fix validates the filename before reading.
 	expect($contents)->toContain('validate_relative_path_within($filename, CACTI_PATH_BASE)');
@@ -141,8 +135,8 @@ test('GHSA-pr9x: package_import.php validates filename with validate_relative_pa
 // GHSA-mjvw: Path traversal via format_file in reports
 // ---------------------------------------------------------------------------
 
-test('GHSA-mjvw: html_reports.php saves format_file with basename() validation', function () use ($htmlReportsPath) {
-	$contents = file_get_contents($htmlReportsPath);
+test('GHSA-mjvw: html_reports.php saves format_file with basename() validation', function () {
+	$contents = file_get_contents(CACTI_PATH_LIBRARY . '/html_reports.php');
 
 	// The fix applies basename() to strip directory traversal.
 	expect($contents)->toContain("basename(\$post['format_file'])");

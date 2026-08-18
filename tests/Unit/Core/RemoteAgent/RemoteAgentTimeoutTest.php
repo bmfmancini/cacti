@@ -12,7 +12,7 @@
  +-------------------------------------------------------------------------+
 */
 
-$globalSettings = file_get_contents(__DIR__ . '/../../../../include/global_settings.php');
+$globalSettings = file_get_contents(CACTI_PATH_INCLUDE . '/global_settings.php');
 
 test('remote agent timeout dropdown includes long WAN-safe values', function () use ($globalSettings) {
 	expect($globalSettings)->not->toBeFalse();

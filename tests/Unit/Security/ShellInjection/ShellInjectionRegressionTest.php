@@ -15,8 +15,8 @@
  * so the advisory it guards against remains traceable.
  */
 
-$pollerSource    = file_get_contents(__DIR__ . '/../../../../lib/poller.php');
-$functionsSource = file_get_contents(__DIR__ . '/../../../../lib/functions.php');
+$pollerSource    = file_get_contents(CACTI_PATH_LIBRARY . '/poller.php');
+$functionsSource = file_get_contents(CACTI_PATH_LIBRARY . '/functions.php');
 
 // GHSA-7vw4: file_exists_2gb used to shell out; the $filename expansion was the bug.
 test('GHSA-7vw4: file_exists_2gb uses PHP file_exists, not a shell', function () use ($pollerSource) {

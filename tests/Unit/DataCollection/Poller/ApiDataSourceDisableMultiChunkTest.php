@@ -23,7 +23,7 @@
  * survive across chunks and the CRC update covers every poller touched.
  */
 
-$source = file_get_contents(__DIR__ . '/../../../../lib/api_data_source.php');
+$source = file_get_contents(CACTI_PATH_LIBRARY . '/api_data_source.php');
 
 $start = strpos($source, 'function api_data_source_disable_multi(');
 expect($start)->not->toBeFalse();

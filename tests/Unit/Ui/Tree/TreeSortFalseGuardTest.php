@@ -23,7 +23,7 @@
  * false.
  */
 
-$source = file_get_contents(__DIR__ . '/../../../../tree.php');
+$source = file_get_contents(CACTI_PATH_BASE . '/tree.php');
 
 function _tree_function_body(string $source, string $needle): string {
 	$start = strpos($source, $needle);

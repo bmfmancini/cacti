@@ -32,8 +32,8 @@
  *   whatever row already holds that id and producing ERROR 1062.
  */
 
-$libPluginsPath = __DIR__ . '/../../../lib/plugins.php';
-$pluginsPath    = __DIR__ . '/../../../plugins.php';
+$libPluginsPath = CACTI_PATH_LIBRARY . '/plugins.php';
+$pluginsPath    = CACTI_PATH_BASE . '/plugins.php';
 
 // ---------------------------------------------------------------------------
 // api_plugin_moveup

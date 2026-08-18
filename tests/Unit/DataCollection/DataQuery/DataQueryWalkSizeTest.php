@@ -19,7 +19,7 @@
  */
 
 function _data_query_source() {
-	$path = dirname(__DIR__, 4) . '/lib/data_query.php';
+	$path = CACTI_PATH_LIBRARY . '/data_query.php';
 	$src  = file_get_contents($path);
 
 	expect($src)->not->toBeFalse('Failed to read lib/data_query.php');

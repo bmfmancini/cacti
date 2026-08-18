@@ -85,7 +85,7 @@ function kill_session_var($name) {
 	$GLOBALS['auth_cache_session_kills'][] = $name;
 }
 
-$source = file_get_contents(dirname(__DIR__, 4) . '/lib/auth.php');
+$source = file_get_contents(CACTI_PATH_LIBRARY . '/auth.php');
 
 if ($source === false) {
 	throw new \RuntimeException('Unable to read lib/auth.php for the permission invalidation test.');
@@ -155,7 +155,7 @@ test('empty groups do not issue invalidation queries', function () {
 });
 
 test('all direct user permission mutation paths reset the affected user', function () {
-	$source = file_get_contents(dirname(__DIR__, 4) . '/user_admin.php');
+	$source = file_get_contents(CACTI_PATH_BASE . '/user_admin.php');
 
 	expect($source)->not->toBeFalse()
 		->and(substr_count($source, "reset_user_perms(get_nfilter_request_var('id'));"))->toBeGreaterThanOrEqual(8)
@@ -165,7 +165,7 @@ test('all direct user permission mutation paths reset the affected user', functi
 });
 
 test('all direct group permission mutation paths reset current and removed members', function () {
-	$source = file_get_contents(dirname(__DIR__, 4) . '/user_group_admin.php');
+	$source = file_get_contents(CACTI_PATH_BASE . '/user_group_admin.php');
 
 	expect($source)->not->toBeFalse()
 		->and(substr_count($source, "reset_group_perms(get_nfilter_request_var('id'));"))->toBeGreaterThanOrEqual(4)

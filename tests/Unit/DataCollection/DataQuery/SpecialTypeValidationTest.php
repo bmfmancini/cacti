@@ -7,7 +7,7 @@
  +-------------------------------------------------------------------------+
 */
 
-$dataInputSource = file_get_contents(__DIR__ . '/../../../../data_input.php');
+$dataInputSource = file_get_contents(CACTI_PATH_BASE . '/data_input.php');
 
 test('host placeholders require a special type code', function () use ($dataInputSource) {
 	expect($dataInputSource)->toContain("\$save['type_code'] == ''");

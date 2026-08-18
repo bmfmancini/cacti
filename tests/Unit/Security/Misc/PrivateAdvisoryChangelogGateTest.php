@@ -41,11 +41,10 @@ function advisory_matrix_fixture(int $changelog_hits) : string {
  * @return array{0: int, 1: string} Exit status and combined command output.
  */
 function run_advisory_matrix_gate(string $matrix) : array {
-	$root   = dirname(__DIR__, 4);
 	$output = [];
 	$status = 0;
 
-	exec('bash ' . escapeshellarg($root . '/tests/security/verify_private_advisory_matrix.sh') . ' ' . escapeshellarg($matrix) . ' 2>&1', $output, $status);
+	exec('bash ' . escapeshellarg(CACTI_PATH_BASE . '/tests/security/verify_private_advisory_matrix.sh') . ' ' . escapeshellarg($matrix) . ' 2>&1', $output, $status);
 
 	return [$status, implode("\n", $output)];
 }

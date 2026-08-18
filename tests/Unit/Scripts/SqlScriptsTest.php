@@ -21,8 +21,8 @@
  *    command strings in these scripts).
  */
 
-$sqlPhpPath   = __DIR__ . '/../../../scripts/sql.php';
-$ssSqlPhpPath = __DIR__ . '/../../../scripts/ss_sql.php';
+$sqlPhpPath   = CACTI_PATH_SCRIPTS . '/sql.php';
+$ssSqlPhpPath = CACTI_PATH_SCRIPTS . '/ss_sql.php';
 
 // --- scripts/sql.php: no backtick operators remain ---
 

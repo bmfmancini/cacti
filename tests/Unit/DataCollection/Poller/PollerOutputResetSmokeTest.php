@@ -14,24 +14,22 @@
  * Cacti's bootstrap.
  */
 
-$repoRoot = __DIR__ . '/../../../..';
-
-test('lib/utility.php and lib/functions.php both parse', function () use ($repoRoot) {
-	expect(file_exists("$repoRoot/lib/utility.php"))->toBeTrue();
-	expect(file_exists("$repoRoot/lib/functions.php"))->toBeTrue();
+test('lib/utility.php and lib/functions.php both parse', function () {
+	expect(file_exists(CACTI_PATH_LIBRARY . '/utility.php'))->toBeTrue();
+	expect(file_exists(CACTI_PATH_LIBRARY . '/functions.php'))->toBeTrue();
 	/* Trivial cross-check: the canonical update_poller_cache signature
 	 * is unchanged and the test_data_source signature from functions.php
 	 * is also unchanged. */
-	$util = file_get_contents("$repoRoot/lib/utility.php");
-	$fns  = file_get_contents("$repoRoot/lib/functions.php");
+	$util = file_get_contents(CACTI_PATH_LIBRARY . '/utility.php');
+	$fns  = file_get_contents(CACTI_PATH_LIBRARY . '/functions.php');
 	expect($util)->toContain('function update_poller_cache($data_source, $commit = false)');
 	expect($fns)->toContain('function test_data_source(');
 });
 
-test('every foreach($outputs as $output) loop has an unset() at iteration top', function () use ($repoRoot) {
+test('every foreach($outputs as $output) loop has an unset() at iteration top', function () {
 	$bodies = [];
 	foreach (['lib/utility.php', 'lib/functions.php'] as $rel) {
-		$src = file_get_contents("$repoRoot/$rel");
+		$src = file_get_contents(CACTI_PATH_LIBRARY . '/' . $rel);
 		$offset = 0;
 		while (($pos = strpos($src, 'foreach ($outputs as $output) {', $offset)) !== false) {
 			$brace = strpos($src, '{', $pos);

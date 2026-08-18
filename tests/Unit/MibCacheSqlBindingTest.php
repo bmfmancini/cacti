@@ -21,9 +21,9 @@
  * accepts anything and the next caller would not have known.
  */
 
-require_once dirname(__DIR__, 2) . '/lib/functions.php';
+require_once CACTI_PATH_LIBRARY . '/functions.php';
 
-$src = file_get_contents(dirname(__DIR__, 2) . '/lib/mib_cache.php');
+$src = file_get_contents(CACTI_PATH_LIBRARY . '/mib_cache.php');
 
 test('the source read succeeded', function () use ($src) {
 	expect($src)->toBeString()->not->toBeEmpty();

@@ -25,7 +25,7 @@
  * dereference $graph before validating it.
  */
 
-$graphPath = __DIR__ . '/../../../../graph.php';
+$graphPath = CACTI_PATH_BASE . '/graph.php';
 
 test('graph.php checks cacti_sizeof($graph) before dereferencing', function () use ($graphPath) {
 	$contents = file_get_contents($graphPath);

@@ -18,11 +18,11 @@
  * so the advisory it guards against remains traceable.
  */
 
-$reportsSource         = file_get_contents(__DIR__ . '/../../../../lib/reports.php');
-$managersSource        = file_get_contents(__DIR__ . '/../../../../managers.php');
-$graphXportSource      = file_get_contents(__DIR__ . '/../../../../graph_xport.php');
-$authProfileSource     = file_get_contents(__DIR__ . '/../../../../auth_profile.php');
-$aggregateGraphsSource = file_get_contents(__DIR__ . '/../../../../aggregate_graphs.php');
+$reportsSource         = file_get_contents(CACTI_PATH_LIBRARY . '/reports.php');
+$managersSource        = file_get_contents(CACTI_PATH_BASE . '/managers.php');
+$graphXportSource      = file_get_contents(CACTI_PATH_BASE . '/graph_xport.php');
+$authProfileSource     = file_get_contents(CACTI_PATH_BASE . '/auth_profile.php');
+$aggregateGraphsSource = file_get_contents(CACTI_PATH_BASE . '/aggregate_graphs.php');
 
 // GHSA-6233: tree/leaf/host/graph names were echoed unescaped by the report renderer.
 test('GHSA-6233: tree name is html_escape encoded when rendered', function () use ($reportsSource) {

@@ -20,7 +20,7 @@
  * before the destination is derived.
  */
 
-$src = file_get_contents(dirname(__DIR__, 2) . '/lib/import.php');
+$src = file_get_contents(CACTI_PATH_LIBRARY . '/import.php');
 
 test('the traversal and absolute-path guards run before the file write', function () use ($src) {
 	$guard = strpos($src, "preg_match('#(^|/)\\.\\.(/|\$)#', \$normalized_name)");

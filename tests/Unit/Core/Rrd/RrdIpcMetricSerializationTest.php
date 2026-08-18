@@ -7,7 +7,7 @@
  +-------------------------------------------------------------------------+
 */
 
-$rrdSource = file_get_contents(__DIR__ . '/../../../../lib/rrd.php');
+$rrdSource = file_get_contents(CACTI_PATH_LIBRARY . '/rrd.php');
 
 test('rrdtool_function_update trims string values before is_numeric', function () use ($rrdSource) {
 	$start = strpos($rrdSource, 'function rrdtool_function_update(');

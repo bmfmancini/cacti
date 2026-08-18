@@ -14,7 +14,7 @@
  * PHP error output to stdout/stderr in all run modes, not just debug.
  */
 
-$src = file_get_contents(__DIR__ . '/../../../../cli/splice_rrd.php');
+$src = file_get_contents(CACTI_PATH_BASE . '/cli/splice_rrd.php');
 
 test('splice_rrd does not unconditionally set display_errors to On', function () use ($src) {
     // The removed line must not be present at all, or only inside a debug guard.

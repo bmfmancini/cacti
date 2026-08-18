@@ -14,7 +14,7 @@
  * to exit(1). Pin both so a future merge cannot quietly regress.
  */
 
-$source = file_get_contents(__DIR__ . '/../../../../cli/push_out_hosts.php');
+$source = file_get_contents(CACTI_PATH_BASE . '/cli/push_out_hosts.php');
 
 test('dash-prefix guard reads $php_binary, not undefined $binary', function () use ($source) {
 	expect($source)->toContain("strpos(trim(\$php_binary), '-')");

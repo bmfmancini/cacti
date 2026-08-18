@@ -23,8 +23,8 @@
  * so the advisory it guards against remains traceable.
  */
 
-$reportsSource     = file_get_contents(__DIR__ . '/../../../../lib/reports.php');
-$htmlReportsSource = file_get_contents(__DIR__ . '/../../../../lib/html_reports.php');
+$reportsSource     = file_get_contents(CACTI_PATH_LIBRARY . '/reports.php');
+$htmlReportsSource = file_get_contents(CACTI_PATH_LIBRARY . '/html_reports.php');
 
 // GHSA-g37j / GHSA-mjvw: reports_load_format_file anchors the path to the formats
 // directory via validate_path_within() before any file IO runs.

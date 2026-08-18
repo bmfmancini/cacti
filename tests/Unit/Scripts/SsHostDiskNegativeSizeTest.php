@@ -30,7 +30,7 @@
  * and DbFetchCellReturnGuardTest.php.
  */
 
-$source = file_get_contents(__DIR__ . '/../../../scripts/ss_host_disk.php');
+$source = file_get_contents(CACTI_PATH_SCRIPTS . '/ss_host_disk.php');
 
 if ($source === false) {
 	throw new RuntimeException('Unable to read scripts/ss_host_disk.php');

@@ -28,7 +28,7 @@
 // --- helpers ---
 
 function getScriptSource(string $filename): string {
-	$path = __DIR__ . '/../../../scripts/' . $filename;
+	$path = CACTI_PATH_SCRIPTS . '/' . $filename;
 	$src  = file_get_contents($path);
 	expect($src)->not->toBeFalse("Failed to read scripts/{$filename}");
 

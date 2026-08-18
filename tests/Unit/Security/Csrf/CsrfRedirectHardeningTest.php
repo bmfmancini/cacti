@@ -15,7 +15,7 @@
  * before emitting the Location: header.
  */
 
-$src = file_get_contents(__DIR__ . '/../../../../include/csrf.php');
+$src = file_get_contents(CACTI_PATH_INCLUDE . '/csrf.php');
 
 test('csrf timeout handler uses validate_redirect_url not sanitize_uri for Location header', function () use ($src) {
     $timeoutPos = strpos($src, 'function csrf_timeout_handler(');

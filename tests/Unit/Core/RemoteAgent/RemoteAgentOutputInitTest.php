@@ -22,7 +22,7 @@
  * lookup and must short-circuit with 'U' when the host row is missing.
  */
 
-$source = file_get_contents(__DIR__ . '/../../../../remote_agent.php');
+$source = file_get_contents(CACTI_PATH_BASE . '/remote_agent.php');
 
 function _ra_function_body(string $source, string $needle): string {
 	$start = strpos($source, $needle);

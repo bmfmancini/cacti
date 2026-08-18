@@ -29,11 +29,11 @@
  *   3. HRULE item pparts[3] replacement (aggregate_graphs_insert_graph_items)
  */
 
-require_once dirname(__DIR__, 3) . '/Helpers/CactiStubs.php';
+require_once CACTI_PATH_BASE . '/tests/Helpers/CactiStubs.php';
 
 // Only AGGREGATE_TOTAL_TYPE_* is needed here. global.php opens a database
 // connection and aborts the whole suite when one is not available.
-require_once dirname(__DIR__, 4) . '/include/global_constants.php';
+require_once CACTI_PATH_INCLUDE . '/global_constants.php';
 
 /**
  * Mimics the text_format :current: / :max: replacement logic from

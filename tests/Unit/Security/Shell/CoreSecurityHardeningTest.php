@@ -7,10 +7,10 @@
  +-------------------------------------------------------------------------+
 */
 
-$pingSource = file_get_contents(__DIR__ . '/../../../../lib/ping.php');
-$snmpSource = file_get_contents(__DIR__ . '/../../../../lib/snmp.php');
-$dqSource   = file_get_contents(__DIR__ . '/../../../../lib/data_query.php');
-$impSource  = file_get_contents(__DIR__ . '/../../../../lib/import.php');
+$pingSource = file_get_contents(CACTI_PATH_LIBRARY . '/ping.php');
+$snmpSource = file_get_contents(CACTI_PATH_LIBRARY . '/snmp.php');
+$dqSource   = file_get_contents(CACTI_PATH_LIBRARY . '/data_query.php');
+$impSource  = file_get_contents(CACTI_PATH_LIBRARY . '/import.php');
 
 test('ping constructor casts retries to int', function () use ($pingSource) {
 	expect($pingSource)->toContain('$retries = (int)$retries');
