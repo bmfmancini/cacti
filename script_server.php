@@ -139,6 +139,17 @@ if ($help) {
 /* record the script start time */
 $start = microtime(true);
 
+/* store the effective log level in a local variable so that expensive debug
+ * strings are only built when debug logging is actually enabled.  This mirrors
+ * the level resolution that cacti_log() performs: a selective (per-file or
+ * per-plugin) override takes precedence, otherwise the global log_verbosity
+ * setting is used. */
+$log_level = get_selective_log_level();
+
+if ($log_level == '') {
+	$log_level = read_config_option('log_verbosity');
+}
+
 if ($config['cacti_server_os'] == 'win32') {
 	cacti_log('DEBUG: GETCWD: ' . strtolower(strtr(getcwd(),"\\",'/')), false, 'PHPSVR', POLLER_VERBOSITY_DEBUG);
 	cacti_log('DEBUG: DIRNAM: ' . strtolower(strtr(dirname(__FILE__),"\\",'/')), false, 'PHPSVR', POLLER_VERBOSITY_DEBUG);
@@ -252,21 +263,17 @@ while (1) {
 				continue;
 			}
 
-			cacti_log("DEBUG: PID[$pid] CTR[$ctr] INC: '". basename($include_file) .
-				"' FUNC: '$function' PARMS: '" . implode('\', \'',$parameter_array) .
-				"'", false, 'PHPSVR', POLLER_VERBOSITY_DEBUG);
-
-			/* Validate the include path unconditionally. Built-ins like system,
-			 * passthru, exec satisfy function_exists() without ever loading a
-			 * script file, so the path guard cannot be gated on the function
-			 * being undefined. include_once() is idempotent, so re-running it
-			 * on cached entries is a no-op. */
-			$real_include = realpath($include_file);
-			$base_real    = realpath($config['base_path']);
-
-			if ($real_include !== false) {
-				$real_include = str_replace('\\', '/', $real_include);
+			if ($log_level == POLLER_VERBOSITY_DEBUG) {
+				cacti_log("DEBUG: PID[$pid] CTR[$ctr] INC: '". basename($include_file) .
+					"' FUNC: '$function' PARMS: '" . implode('\', \'',$parameter_array) .
+					"'", false, 'PHPSVR');
 			}
+
+			/* Needed both to validate the include file (when the function still has
+			 * to be loaded) and to validate the resolved source file of an
+			 * already-loaded function below, so compute them unconditionally. */
+			$base_real = realpath($config['base_path']);
+
 			if ($base_real !== false) {
 				$base_real = str_replace('\\', '/', $base_real);
 			}
@@ -274,43 +281,57 @@ while (1) {
 			/* On Windows, realpath() may return mixed-case drive letters; use
 			 * case-insensitive comparison to avoid false rejections. */
 			$path_cmp = (DIRECTORY_SEPARATOR === '\\') ? 'stripos' : 'strpos';
-			$path_ok  = ($real_include !== false && $base_real !== false && $path_cmp($real_include, $base_real . '/') === 0);
 
-			if (!$path_ok) {
+			if (!function_exists($function)) {
+				/* Only validate and include the script file while the function is
+				 * not yet loaded. Built-ins like system, passthru and exec already
+				 * satisfy function_exists(), so they skip this block; they are
+				 * still refused below by the isInternal() and source-file
+				 * containment checks that run for every request. */
+				$real_include = realpath($include_file);
+
 				if ($real_include !== false) {
-					cacti_log("WARNING: Script file '$include_file' resolves outside base path. Rejected.", false, 'PHPSVR');
-				} else {
-					cacti_log("WARNING: Script file '$include_file' could not be resolved. Rejected.", false, 'PHPSVR');
+					$real_include = str_replace('\\', '/', $real_include);
 				}
-				fputs(STDOUT, "U\n");
-				fflush(STDOUT);
-				continue;
+
+				$path_ok = ($real_include !== false && $base_real !== false && $path_cmp($real_include, $base_real . '/') === 0);
+
+				if (!$path_ok) {
+					if ($real_include !== false) {
+						cacti_log("WARNING: Script file '$include_file' resolves outside base path. Rejected.", false, 'PHPSVR');
+					} else {
+						cacti_log("WARNING: Script file '$include_file' could not be resolved. Rejected.", false, 'PHPSVR');
+					}
+					fputs(STDOUT, "U\n");
+					fflush(STDOUT);
+					continue;
+				}
+
+				$include_file = $real_include;
+
+				if (!file_exists($include_file)) {
+					cacti_log('WARNING: PHP Script File to be included, does not exist', false, 'PHPSVR');
+					fputs(STDOUT, "U\n");
+					fflush(STDOUT);
+					continue;
+				}
+
+				/* quirk in php on Windows, believe it or not....path must be lower case */
+				if ($config['cacti_server_os'] == 'win32') {
+					$include_file = strtolower($include_file);
+				}
+
+				/* set this variable so the calling script can determine if it was
+				 * called by the script server or stand-alone */
+				$called_by_script_server = true;
+
+				/* turn on output buffering to avoid problems with nasty scripts */
+				ob_start();
+				include_once($include_file);
+				ob_end_clean();
+
+				error_reporting(0);
 			}
-
-			$include_file = $real_include;
-
-			if (!file_exists($include_file)) {
-				cacti_log('WARNING: PHP Script File to be included, does not exist', false, 'PHPSVR');
-				fputs(STDOUT, "U\n");
-				fflush(STDOUT);
-				continue;
-			}
-
-			/* quirk in php on Windows, believe it or not....path must be lower case */
-			if ($config['cacti_server_os'] == 'win32') {
-				$include_file = strtolower($include_file);
-			}
-
-			/* set this variable so the calling script can determine if it was
-			 * called by the script server or stand-alone */
-			$called_by_script_server = true;
-
-			/* turn on output buffering to avoid problems with nasty scripts */
-			ob_start();
-			include_once($include_file);
-			ob_end_clean();
-
-			error_reporting(0);
 
 			if (!function_exists($function)) {
 				cacti_log("WARNING: Function does not exist  INC: '". basename($include_file) . "' FUNC: '" .$function . "' PARMS: '" . $parameters . "'", false, 'PHPSVR');
@@ -370,7 +391,9 @@ while (1) {
 			fputs(STDOUT, trim($result) . "\n");
 			fflush(STDOUT);
 
-			cacti_log("DEBUG: PID[$pid] CTR[$ctr] RESPONSE:'$result'", false, 'PHPSVR', POLLER_VERBOSITY_DEBUG);
+			if ($log_level == POLLER_VERBOSITY_DEBUG) {
+				cacti_log("DEBUG: PID[$pid] CTR[$ctr] RESPONSE:'$result'", false, 'PHPSVR');
+			}
 
 			$ctr++;
 		}
