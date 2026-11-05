@@ -252,9 +252,7 @@ while (1) {
 				continue;
 			}
 
-			cacti_log("DEBUG: PID[$pid] CTR[$ctr] INC: '". basename($include_file) .
-				"' FUNC: '$function' PARMS: '" . implode('\', \'',$parameter_array) .
-				"'", false, 'PHPSVR', POLLER_VERBOSITY_DEBUG);
+			script_server_log_request($pid, $ctr, $include_file, $function, $parameter_array);
 
 			/* Validate the include path unconditionally. Built-ins like system,
 			 * passthru, exec satisfy function_exists() without ever loading a
@@ -370,7 +368,7 @@ while (1) {
 			fputs(STDOUT, trim($result) . "\n");
 			fflush(STDOUT);
 
-			cacti_log("DEBUG: PID[$pid] CTR[$ctr] RESPONSE:'$result'", false, 'PHPSVR', POLLER_VERBOSITY_DEBUG);
+			script_server_log_response($pid, $ctr, $result);
 
 			$ctr++;
 		}
